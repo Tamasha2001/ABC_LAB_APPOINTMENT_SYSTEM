@@ -33,6 +33,66 @@ public class DBUtils {
     }
     
 
+    public Patient getPatient (int id) throws SQLException {
+        Patient pt = null;
+         try {
+
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM patient WHERE id="+ id);) {
+                while (rs.next()) {
+                    pt = new Patient();
+                    pt.setId( rs.getInt("id"));
+                    pt.setP_name( rs.getString("p_name"));
+                    pt.setDob(rs.getString("dob"));
+                    pt.setGender(rs.getString("gender"));
+                    pt.setEmail(rs.getString("email"));
+                    pt.setPassword(rs.getString("password"));
+                    pt.setContact(rs.getString("contact"));
+                    break;
+                }
+            } catch (SQLException e) {
+                System.err.print(e);
+                throw e;
+            }
+
+        } catch (SQLException e) {
+            System.err.print(e);
+            throw e;
+        }
+
+        return pt;
+    }
+                    
+    public List<Patient> getPatients() {
+        List<Patient> patient = new ArrayList<>();
+         try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM patient");) {
+                while (rs.next()) {
+                    Patient pt = new Patient();
+                    pt.setId( rs.getInt("id"));
+                    pt.setP_name( rs.getString("p_name"));
+                    pt.setDob(rs.getString("dob"));
+                    pt.setGender(rs.getString("gender"));
+                    pt.setEmail(rs.getString("email"));
+                    pt.setPassword(rs.getString("password"));
+                    pt.setContact(rs.getString("contact"));
+                    patient.add(pt);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        return patient;
+    }
+    
+    
     public boolean addPatient(Patient pt) {
         try {
             try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);  Statement stmt = conn.createStatement();) {
@@ -48,6 +108,29 @@ public class DBUtils {
         }
         return false;
     }
+    
+    public List<Patient> viewPatient() {
+    List<Patient> patient = new ArrayList<>();
+    try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery("SELECT * FROM patient")) {
+        while (rs.next()) {
+            Patient pt = new Patient();
+            pt.setId(rs.getInt("id"));
+            pt.setP_name(rs.getString("p_name"));
+            pt.setDob(rs.getString("dob"));
+            pt.setGender(rs.getString("gender"));
+            pt.setEmail(rs.getString("email"));
+            pt.setPassword(rs.getString("password"));
+            pt.setContact(rs.getString("contact"));
+            patient.add(pt);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return patient;
+}
+
     
      public boolean verifyLogin(String email, String password) {
         try {
@@ -214,7 +297,7 @@ public class DBUtils {
                     ResultSet rs = stmt.executeQuery("SELECT * FROM test_details");) {
                 while (rs.next()) {
                     Test ts = new Test();
-                   ts.setTest_id( rs.getInt("test_id"));
+                    ts.setTest_id( rs.getInt("test_id"));
                     ts.setPatient_name( rs.getString("patient_name"));
                     ts.setTest_type(rs.getString("test_type"));
                     ts.setTest_date(rs.getString("test_date"));

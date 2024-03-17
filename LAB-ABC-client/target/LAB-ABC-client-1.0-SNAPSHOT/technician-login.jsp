@@ -78,7 +78,7 @@
 
 <body>
     <div class="login-container">
-        <h1>Login</h1>
+        <h1>Technician Login</h1>
         <form id="loginForm">
             <input type="text" id="username" name="username" placeholder="Username" required><br>
             <input type="password" id="password" name="password" placeholder="Password" required><br>

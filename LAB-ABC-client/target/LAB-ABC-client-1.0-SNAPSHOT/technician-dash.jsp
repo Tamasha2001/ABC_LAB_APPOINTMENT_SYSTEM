@@ -27,7 +27,7 @@
                 <a onclick="showContent('appointmentsContent')" href="#appointments">View Appointments</a>
                 <a onclick="showContent('viewPatientsContent')" href="#viewPatients">View Patients</a>
                 <a onclick="showContent('uploadReportContent')" href="#uploadReport">View Payments</a>
-                
+
                 <div>
                     <button onclick="logout()" style="margin-top:250px; margin-left:150px; background-color: red">Logout</button>
                 </div>
@@ -43,9 +43,10 @@
                         <label for="reportFile">Upload PDF Report:</label>
                         <input type="file" id="uploadReportFile" accept=".pdf" required />
 
-                        <button type="submit" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Upload Report</button>
+                        <button id="btnsubmitReport" onclick="submitReport() style ="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Upload Report</button>
+
                     </form>
-                    
+
                     <div id="reportUploadResult"></div>
                 </section>
             </div>
@@ -78,10 +79,23 @@
                         <input type="time" id="testTime" name="testTime" required>
 
                         <label for="technicianName">Technician Name:</label>
-                        <input type="text" id="technicianName" name="technicianName" required>
+                        <select id="technicianName" name="technicianName" required>
+                            <option value="D.I.K.Thilakarathna">D.I.K.Thilakarathna</option>
+                            <option value="A.S.Perera">A.S.Perera</option>
+                            <option value="D.M.Silva">D.M.Silva</option>
+                            <option value="P.Anuththara">P.Anuththara </option>
+                            <option value="C.T.Attanayaka">C.T.Attanayaka</option>
+                            <option value="Y.K.Alwis">Y.K.Alwis</option>
+                        </select>
 
                         <label for="referringDoctor">Referring Doctor:</label>
-                        <input type="text" id="referringDoctor" name="referringDoctor" required>
+                        <select id="referringDoctor" name="referringDoctor" required>
+                            <option value="Dr.Ananda">Dr.Ananda</option>
+                            <option value="Dr.Lakshman">Dr.Lakshman</option>
+                            <option value="Dr.Silva">Dr.Silva</option>
+                            <option value="Dr.Senadi">Dr.Senadi </option>
+                            <option value="Dr.Ratnayaka">Dr.Ratnayaka</option>
+                        </select>
 
                         <label for="resultDetails">Result Details:</label>
                         <textarea id="resultDetails" name="resultDetails"></textarea>
@@ -92,7 +106,7 @@
                             <button id="btnupdateTest" onclick="updateTest()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Update</button>
                             <button id="btndeleteTest" onclick="deleteTest()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Delete</button>
                             <button id="btnclearTestDetails" onclick="clearTestDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Clear</button>
-                            
+
                         </div>
                     </form>
                     <br><hr><br>
@@ -148,15 +162,17 @@
                                 <th>Date of Birth</th>
                                 <th>Gender</th>
                                 <th>Email</th>
+                                <th hidden>Password</th>
                                 <th>Contact</th>
                             </tr>
                         </thead>
                         <tbody id="patientsList" class="patients-list">
-                            <!-- Patient details will be dynamically populated here -->
                         </tbody>
                     </table>
                 </section>
             </div>
+
+
 
             <script>
                 window.onload = function () {
@@ -360,41 +376,42 @@
                 //Patient
 
                 function showPatientsContent() {
-                    // Fetch and display patient data when the "View Patients" link is clicked
                     fetchPatients();
                 }
 
                 function fetchPatients() {
-                    // Assuming you have a server endpoint for fetching patient data
-                    const patientsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/Patient/";
+                    const patientsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/patient/";
 
-                    // Make a GET request to the server
                     fetch(patientsUrl)
                             .then(response => response.json())
                             .then(data => {
-                                // Populate the patient table with the received data
-                                const patientTable = document.getElementById("patientsTable");
-                                patientTable.innerHTML = "<thead><tr><th>ID</th><th>Name</th><th>Date of Birth</th><th>Gender</th><th>Email</th><th>Contact</th></tr></thead>";
+                                const patientsList = document.getElementById("patientsList");
+                                patientsList.innerHTML = "";
 
                                 data.forEach(patient => {
-                                    const row = patientTable.insertRow();
-                                    row.insertCell(0).textContent = patient.id;
-                                    row.insertCell(1).textContent = patient.name;
-                                    row.insertCell(2).textContent = patient.dob;
-                                    row.insertCell(3).textContent = patient.gender;
-                                    row.insertCell(4).textContent = patient.email;
-                                    row.insertCell(5).textContent = patient.contact;
+                                    const row = document.createElement("tr");
+                                    row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.p_name}</td>
+                    <td>${patient.dob}</td>
+                    <td>${patient.gender}</td>
+                    <td>${patient.email}</td>
+                    <td>${patient.password}</td>
+                    <td>${patient.contact}</td>
+                `;
+                                    patientsList.appendChild(row);
                                 });
                             })
                             .catch(error => {
                                 console.error("Error fetching patient data:", error);
                             });
                 }
-                
+
+
                 function logout() {
-                window.location.href = "http://localhost:8080/LAB-ABC-client/";
-                alert("Logging out...");
-            }
+                    window.location.href = "http://localhost:8080/LAB-ABC-client/";
+                    alert("Logging out...");
+                }
 
 
             </script>

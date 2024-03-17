@@ -30,7 +30,7 @@ public class TestResource {
     
      @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getTest(){    
+    public Response getTests(){    
         return Response
                 .ok(gson.toJson(new DBUtils().getTest()))
                 .build();
@@ -39,10 +39,10 @@ public class TestResource {
     @GET
     @Path("{test_id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getTest(@PathParam("test_id") int test_id){ 
-//        System.err.println("Test "+ id);
+    public Response getTest(@PathParam("test_id") int id){ 
+       System.err.println("Test "+ id);
         try {
-        Test test = new DBUtils().getTest(test_id);
+        Test test = new DBUtils().getTest(id);
         
         if (test != null) {
                   return Response
@@ -73,7 +73,7 @@ public class TestResource {
     @PUT
     @Path("{test_id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateTest(String json, @PathParam("test_id") int test_id){ 
+    public Response updateTest(String json, @PathParam("test_id") int id){ 
         Test test = gson.fromJson(json, Test.class);
         new DBUtils().updateTest(test);
         return Response
@@ -84,8 +84,8 @@ public class TestResource {
     
     @DELETE
     @Path("{test_id}")
-    public Response deleteTest(@PathParam("test_id") int test_id){ 
-        new DBUtils().deleteTest(test_id);
+    public Response deleteTest(@PathParam("test_id") int id){ 
+        new DBUtils().deleteTest(id);
         return Response
             .ok()
             .build();
