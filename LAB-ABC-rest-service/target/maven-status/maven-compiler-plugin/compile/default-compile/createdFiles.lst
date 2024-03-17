@@ -1,0 +1,9 @@
+com\mycompany\lab\abc\rest\service\resources\AppointmentResource.class
+com\mycompany\lab\abc\rest\service\resources\DBUtils.class
+com\mycompany\lab\abc\rest\service\resources\TestDetails.class
+com\mycompany\lab\abc\rest\service\JakartaRestConfiguration.class
+com\mycompany\lab\abc\rest\service\resources\Patient.class
+com\mycompany\lab\abc\rest\service\resources\PatientResource.class
+com\mycompany\lab\abc\rest\service\resources\LoginResource.class
+com\mycompany\lab\abc\rest\service\resources\JakartaEE9Resource.class
+com\mycompany\lab\abc\rest\service\resources\Appointment.class

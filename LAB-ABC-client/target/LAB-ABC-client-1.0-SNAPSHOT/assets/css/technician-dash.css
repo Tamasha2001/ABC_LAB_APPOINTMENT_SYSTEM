@@ -1,0 +1,91 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 13, 2024, 2:50:12 PM
+    Author     : User
+*/
+body {
+    background: url("../img/technician-bg.jpg");
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.menu {
+    width: 250px;
+    height: 100%;
+    background-color: #2c3e50;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    transition: left 0.3s ease;
+}
+
+.menu a {
+    display: block;
+    padding: 15px;
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid #34495e;
+    cursor: pointer;
+}
+
+.menu a:hover {
+    background-color: #9ba0a5;
+}
+
+.content {
+    padding: 20px;
+}
+
+.appointment-content,
+.upload-report-content,
+.admin-content{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        left: 0;
+    }
+}
+
+.appointment-content {
+    margin-top: 80px;
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.admin-content{
+    margin-top: 80px;
+    margin-left: 200px;
+    padding: 20px;
+   
+}
+
+#report {
+    height: 100px; /* Adjust the height based on your design */
+}
+
+/* Additional styles for the technician dashboard can be added here */
+
