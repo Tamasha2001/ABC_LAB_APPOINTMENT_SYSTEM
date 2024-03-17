@@ -46,8 +46,9 @@ body {
 }
 
 /* Button styles */
-.login-container button[type="submit"] {
-    width: 100%;
+.login-container button {
+    width: 90%;
+    height: 5%;
     background-color: #3498db;
     color: white;
     padding: 14px 0;
@@ -59,7 +60,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.login-container button[type="submit"]:hover {
+.login-container button:hover {
     background-color: #4dabe9;
 }
 

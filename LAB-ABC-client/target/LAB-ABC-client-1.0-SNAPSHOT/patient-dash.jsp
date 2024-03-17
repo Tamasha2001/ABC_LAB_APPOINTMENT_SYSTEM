@@ -58,7 +58,7 @@
                                 <option value="geneticTests">Genetic Tests</option>
                             </select>
 
-                            <button type="submit" onclick="makeAppointment">Submit Appointment</button>
+                            <button id="btnmakeAppointment" onclick="makeAppointment()">Submit Appointment</button>
                         </form>
                     </div>
                 </section>
@@ -169,7 +169,7 @@
             }
 
             function logout() {
-                window.location.href = "http://localhost:8080/ABC-client/";
+                window.location.href = "http://localhost:8080/LAB-ABC-client/";
                 alert("Logging out...");
             }
 

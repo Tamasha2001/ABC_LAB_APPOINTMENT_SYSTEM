@@ -15,37 +15,45 @@
     </head>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("loginForm").addEventListener("submit", function (event) {
-                event.preventDefault();
-                var form = this;
-                var formData = new FormData(form);
+            function checkLogin() {
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+ 
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "http://localhost:8080/LAB-ABC-client/p_login", true);
+                xhr.open("POST", "http://localhost:8080/LAB-ABC-rest-service/resources/login", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
-                            document.getElementById("message").innerText = "Login Successful";
-                            window.location.href = "patient-dash.jsp";
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                // Login successful, redirect to the patient dashboard
+                                window.location.href = "patient-dash.jsp";
+                            } else {
+                                document.getElementById("message").innerHTML = response.message;
+                            }
                         } else {
-                            document.getElementById("message").innerText = "Login Failed. Please check your credentials.";
+                            document.getElementById("message").innerHTML = "An error occurred. Please try again later.";
                         }
                     }
                 };
-                xhr.send(formData);
-            });
-        });
-    </script>
+                var data = JSON.stringify({email: email, password: password});
+                xhr.send(data);
+                return false; // Prevent the form from submitting
+            }
+ 
+ 
+        </script>
 
     <body>
         <div class="login-container">
-            <h1>Login</h1>
-            <form id="loginForm">
+            <h1>Patient Login</h1>
+            <form id="loginForm" onsubmit="return checkLogin()">
                 <input type="email" id="email" name="email" placeholder="Email" required><br>
                 <input type="password" id="password" name="password" placeholder="Password" required><br>
                 <button type="submit">Login</button>
+                <label>Don't you have an account - <a href="p-signup.jsp">Sign up</a></label>
             </form>
             <div id="message" class="message"></div>
-            <p>Don't have an account? <a href="signup.jsp">Sign Up</a></p>
         </div>
 </html>

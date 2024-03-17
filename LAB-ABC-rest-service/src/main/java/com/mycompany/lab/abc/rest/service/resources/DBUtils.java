@@ -49,20 +49,20 @@ public class DBUtils {
         return false;
     }
     
-    public boolean authenticatePatient(String email, String password) {
+     public boolean verifyLogin(String email, String password) {
         try {
-            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                 PreparedStatement stmt = conn.prepareStatement("SELECT * FROM patient WHERE email = ? AND password = ?")) {
-                stmt.setString(1, email);
-                stmt.setString(2, password);
-                try (ResultSet rs = stmt.executeQuery()) {
-                    return rs.next(); 
-                }
-            }
-        } catch (SQLException e) {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            String sql = "SELECT * FROM patient WHERE email=? AND password=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // If result set is not empty, login is successful
+        } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
     
      public Appointment getAppointment(int id) throws SQLException {
@@ -161,6 +161,120 @@ public class DBUtils {
                     Statement stmt = conn.createStatement(); 
                     ) {
                 stmt.executeUpdate("DELETE FROM appointments WHERE (apid = '"+ apid + "');");
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+    
+    //Test
+    
+     public Test getTest(int test_id) throws SQLException {
+        Test ts = null;
+         try {
+
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM test_details WHERE test_id="+ test_id);) {
+                while (rs.next()) {
+                    ts = new Test();
+                    ts.setTest_id( rs.getInt("test_id"));
+                    ts.setPatient_name( rs.getString("patient_name"));
+                    ts.setTest_type(rs.getString("test_type"));
+                    ts.setTest_date(rs.getString("test_date"));
+                    ts.setTest_time(rs.getString("test_time"));
+                    ts.setTechnician_name(rs.getString("technician_name"));
+                    ts.setReferring_doctor(rs.getString("referring_doctor"));
+                    ts.setResult_DETAILS(rs.getString("result_DETAILS"));
+                    break;
+                }
+            } catch (SQLException e) {
+                System.err.print(e);
+                throw e;
+            }
+
+        } catch (SQLException e) {
+            System.err.print(e);
+            throw e;
+        }
+
+        return ts;
+    }
+                    
+    public List<Test> getTest() {
+        List<Test> test = new ArrayList<>();
+         try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM test_details");) {
+                while (rs.next()) {
+                    Test ts = new Test();
+                   ts.setTest_id( rs.getInt("test_id"));
+                    ts.setPatient_name( rs.getString("patient_name"));
+                    ts.setTest_type(rs.getString("test_type"));
+                    ts.setTest_date(rs.getString("test_date"));
+                    ts.setTest_time(rs.getString("test_time"));
+                    ts.setTechnician_name(rs.getString("technician_name"));
+                    ts.setReferring_doctor(rs.getString("referring_doctor"));
+                    ts.setResult_DETAILS(rs.getString("result_DETAILS"));
+                    test.add(ts);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        return test;
+    }
+    
+    public boolean addTest(Test test) {
+        try {
+            try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);  Statement stmt = conn.createStatement();) {
+                String query = "INSERT INTO test_details (test_id, patient_name, test_type, test_date, test_time, technician_name, referring_doctor, result_DETAILS) "
+                        + "VALUES ('" + test.getTest_id() + "', '" + test.getPatient_name() + "', '" + test.getTest_type() + "', '" + test.getTest_date() + "', '" + test.getTest_time() + "', '" + test.getTechnician_name() + "', '" + test.getReferring_doctor() + "', '" + test.getResult_DETAILS() + "');";
+                stmt.executeUpdate(query);
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+   
+    public boolean updateTest(Test ts) {
+        try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ) {
+                stmt.executeUpdate("UPDATE test_details SET patient_name = '" +ts.getPatient_name() + "', test_type = '" + ts.getTest_type()+ "', test_date = '" +ts.getTest_date() + "', test_time = '" + ts.getTest_time()+ "', technician_name = '" + ts.getTechnician_name()+ "',referring_doctor = '" + ts.getReferring_doctor()+ "',result_DETAILS = '" + ts.getResult_DETAILS()+ "', WHERE (test_id = '" + ts.getTest_id() +"');");
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+    
+    public boolean deleteTest(int test_id) {
+        try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ) {
+                stmt.executeUpdate("DELETE FROM test_details WHERE (test_id = '"+ test_id + "');");
                 return true;
             } catch (SQLException e) {
                 e.printStackTrace();
