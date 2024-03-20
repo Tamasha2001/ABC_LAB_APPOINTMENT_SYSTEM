@@ -28,16 +28,16 @@
                 <a onclick="showContent('viewPatientsContent')" href="#viewPatients">View Patients</a>
                 <a onclick="showContent('uploadReportContent')" href="#uploadReport">View Payments</a>
 
-                <div>
-                    <button onclick="logout()" style="margin-top:250px; margin-left:150px; background-color: red">Logout</button>
-                </div>
+                <button onclick="logout()" style="margin-top:190px; margin-left:150px; background-color: red">Logout</button>
+               
             </div>
+        
 
-            <div class="appointment-content" id="uploadReportContent">
+            <div class="technician-content" id="uploadReportContent">
                 <section id="uploadReport" class="container">
                     <h1>Upload Report</h1>
                     <form id="uploadReportForm" onsubmit="submitReport()">
-                        <label for="appointmentId">Appointment ID:</label>
+                        <label for="appointmentId">Patient ID:</label>
                         <input type="text" id="appointmentId" name="appointmentId" required>
 
                         <label for="reportFile">Upload PDF Report:</label>
@@ -51,7 +51,7 @@
                 </section>
             </div>
 
-            <div class="appointment-content" id="manageTestContent">
+            <div class="technician-content" id="manageTestContent">
                 <section id="manageTestDetails" class="container">
                     <h1>Manage Test Details</h1>
 
@@ -99,18 +99,20 @@
 
                         <label for="resultDetails">Result Details:</label>
                         <textarea id="resultDetails" name="resultDetails"></textarea>
-
                         <div class="button-container" style="display: flex;gap: 40px; max-height: 100px; margin-left: 40px">
-                            <button id="btngetTest" onclick="getTest()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Search</button>
-                            <button id="btnaddTest" onclick="addTest()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Add</button>
-                            <button id="btnupdateTest" onclick="updateTest()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Update</button>
-                            <button id="btndeleteTest" onclick="deleteTest()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Delete</button>
-                            <button id="btnclearTestDetails" onclick="clearTestDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Clear</button>
+                            <button id="btngetTest" onclick="getTest(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Search</button>
+                            <button id="btnaddTest" onclick="addTest(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Add</button>
+                            <button id="btnupdateTest" onclick="updateTest(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Update</button>
+                            <button id="btndeleteTest" onclick="deleteTest(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Delete</button>
+                            <button id="btnclearTestDetails" onclick="clearTestDetails(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Clear</button>
 
                         </div>
                     </form>
                     <br><hr><br>
 
+                    <div class="button-container">
+                        <button id="btnViewAll" onclick="viewAll()">View All</button>
+                    </div>
                     <div id="testDetailsTable" class="test-details-table">
                         <!-- Test details table will be dynamically populated here -->
                         <table>
@@ -127,11 +129,12 @@
                                 </tr>
                             </thead>
                         </table>
+
                     </div>
                 </section>
             </div>
 
-            <div class="appointment-content" id="appointmentsContent">
+            <div class="technician-content" id="appointmentsContent">
                 <section id="appointments" class="container">
                     <h1>Appointments</h1>
                     <table id="appointmentTable" class="appointment-table">
@@ -151,7 +154,7 @@
                 </section>
             </div>
 
-            <div class="appointment-content" id="viewPatientsContent">
+            <div class="technician-content" id="viewPatientsContent">
                 <section id="viewPatients" class="container">
                     <h1>View Patients</h1>
                     <table id="appointmentTable" class="appointment-table">
@@ -172,7 +175,7 @@
                 </section>
             </div>
 
-
+</div>
 
             <script>
                 window.onload = function () {
@@ -180,7 +183,7 @@
                     var menu = document.getElementById("sideMenu");
                     menu.style.left = "0px";
                     // Display the appointment form content
-                    showContent('appointmentContent');
+                    showContent('uploadReportContent');
                     // Add an event listener for file input change
                     document.getElementById('uploadReportFile').addEventListener('change', handleFileSelect);
                 };
@@ -194,14 +197,14 @@
                 }
 
                 function showContent(contentId) {
-                    var contentElements = document.querySelectorAll('.appointment-content');
+                    var contentElements = document.querySelectorAll('.technician-content');
                     for (var i = 0; i < contentElements.length; i++) {
                         contentElements[i].style.display = 'none';
                     }
 
                     var selectedContent = document.getElementById(contentId);
                     selectedContent.style.display = 'block';
-                    if (contentId === 'viewAppointmentContent') {
+                    if (contentId === 'manageTestContent') {
                         fetchAppointmentDetails();
                     }
                 }
@@ -261,10 +264,11 @@
                     reportContainer.innerHTML = '<embed src="' + pdfContent + '" type="application/pdf" width="100%" height="600px" />';
                 }
 
-                //Manage test details
+                //*****************************Manage test details*******************************
                 const testDetailsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/test/";
 
                 function getTest() {
+                    event.preventDefault();
                     let test_id = document.getElementById("testDetailsId").value;
                     const options = {
                         method: "GET"
@@ -279,7 +283,7 @@
                                     document.getElementById("testTime").value = data.test_time;
                                     document.getElementById("technicianName").value = data.technician_name;
                                     document.getElementById("referringDoctor").value = data.referring_doctor;
-                                    document.getElementById("resultDetails").value = data.result_details;
+                                    document.getElementById("resultDetails").value = data.result_DETAILS;
                                 } else {
                                     alert("Test details not found");
                                 }
@@ -287,29 +291,66 @@
                 }
 
                 function addTest() {
-                    const testDetails = {
-                        "test_id": document.getElementById("testDetailsId").value,
-                        "patient_name": document.getElementById("patientName").value,
-                        "test_type": document.getElementById("testType").value,
-                        "test_date": document.getElementById("testDate").value,
-                        "test_time": document.getElementById("testTime").value,
-                        "technician_name": document.getElementById("technicianName").value,
-                        "referring_doctor": document.getElementById("referringDoctor").value,
-                        "result_DETAILS": document.getElementById("resultDetails").value
-                    };
-                    const options = {
-                        method: "POST",
-                        headers: {
-                            "content-type": "application/json"
-                        },
-                        body: JSON.stringify(testDetails)
-                    };
-                    fetch(testDetailsUrl, options);
+                    event.preventDefault();
+                    let testId = document.getElementById("testDetailsId").value;
+
+                    // Check if the test ID already exists
+                    fetch(testDetailsUrl + testId)
+                            .then(response => {
+                                if (response.ok) {
+                                    // If ID exists, show alert for duplicate ID
+                                    alert("Test ID is already in use. Please choose a different ID.");
+                                } else {
+                                    // If ID doesn't exist, proceed with adding the test
+                                    const person = {
+                                        "test_id": testId,
+                                        "patient_name": document.getElementById("patientName").value,
+                                        "test_type": document.getElementById("testType").value,
+                                        "test_date": document.getElementById("testDate").value,
+                                        "test_time": document.getElementById("testTime").value,
+                                        "technician_name": document.getElementById("technicianName").value,
+                                        "referring_doctor": document.getElementById("referringDoctor").value,
+                                        "result_DETAILS": document.getElementById("resultDetails").value
+                                    };
+
+                                    const options = {
+                                        method: "POST",
+                                        headers: {
+                                            "content-type": "application/json"
+                                        },
+                                        body: JSON.stringify(person)
+                                    };
+
+                                    fetch(testDetailsUrl, options)
+                                            .then(response => {
+                                                if (response.ok) {
+                                                    alert("Test details added successfully!");
+                                                    document.getElementById("testDetailsForm").reset(); // Reset the form
+                                                } else {
+                                                    // Test addition failed
+                                                    throw new Error("Failed to add test.");
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                                alert("An error occurred. Please try again later.");
+                                            });
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert("An error occurred. Please try again later.");
+                            });
                 }
 
+
+
                 function updateTest() {
+                    event.preventDefault();
+
                     let test_id = document.getElementById("testDetailsId").value;
-                    const testDetails = {
+                    const person = {
+                        "test_id": test_id,
                         "patient_name": document.getElementById("patientName").value,
                         "test_type": document.getElementById("testType").value,
                         "test_date": document.getElementById("testDate").value,
@@ -323,28 +364,101 @@
                         headers: {
                             "content-type": "application/json"
                         },
-                        body: JSON.stringify(testDetails)
+                        body: JSON.stringify(person)
                     };
-                    fetch(testDetailsUrl + test_id, options);
+
+                    fetch(testDetailsUrl + test_id, options)
+                            .then(response => {
+                                if (response.ok) {
+                                    // Test update successful
+                                    alert("Test details updated successfully!");
+                                    document.getElementById("testDetailsForm").reset();
+                                } else {
+                                    // Test update failed
+                                    throw new Error("Failed to update test details. Please try again later.");
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert("An error occurred. Please try again later.");
+                            });
                 }
 
-                function deleteTest() {
+
+                function deleteTest(event) {
+                    event.preventDefault();
+
                     let test_id = document.getElementById("testDetailsId").value;
-                    const options = {
-                        method: "DELETE"
-                    };
-                    fetch(testDetailsUrl + test_id, options);
+
+                    if (!test_id) {
+                        alert("Please enter a valid Test ID.");
+                        return;
+                    }
+
+                    // Fetch the existing data to check if ID matches
+                    fetch(testDetailsUrl + test_id)
+                            .then(response => {
+                                if (response.ok) {
+                                    // If ID exists, proceed with deletion
+                                    const options = {
+                                        method: "DELETE"
+                                    };
+
+                                    return fetch(testDetailsUrl + test_id, options);
+                                } else {
+                                    // If ID doesn't exist, show error message
+                                    throw new Error("Test ID does not exist.");
+                                }
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    alert("Data deleted successfully!");
+                                    document.getElementById("testDetailsForm").reset();
+                                } else {
+                                    throw new Error("Failed to delete data.");
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Error:", error);
+                                alert("Failed to delete data. " + error.message);
+                            });
                 }
+
+
 
                 function clearTestDetails() {
-                    document.getElementById("testDetailsId").value = "";
-                    document.getElementById("patientName").value = "";
-                    document.getElementById("testType").value = "";
-                    document.getElementById("testDate").value = "";
-                    document.getElementById("testTime").value = "";
-                    document.getElementById("technicianName").value = "";
-                    document.getElementById("referringDoctor").value = "";
-                    document.getElementById("resultDetails").value = "";
+                    event.preventDefault();
+                    document.getElementById("testDetailsForm").reset();
+                }
+
+
+// Function to fetch and display all test details
+                function viewAll() {
+                    event.preventDefault();
+                    fetch(testDetailsUrl, options)
+                            .then(response => response.json())
+                            .then(data => {
+                                const tableBody = document.querySelector('#testDetailsTable table tbody');
+                                tableBody.innerHTML = ''; // Clear previous data
+
+                                data.forEach(test => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                    <td>${test.test_id}</td>
+                    <td>${test.patient_name}</td>
+                    <td>${test.test_type}</td>
+                    <td>${test.test_date}</td>
+                    <td>${test.test_time}</td>
+                    <td>${test.technician_name}</td>
+                    <td>${test.referring_doctor}</td>
+                    <td>${test.result_DETAILS}</td>
+                `;
+                                    tableBody.appendChild(row);
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error fetching test details:', error);
+                            });
                 }
 
                 //Appointment

@@ -7,7 +7,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : User
 */
 body {
-    background: url("../img/hero-bg.jpg");
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
@@ -61,7 +60,8 @@ body {
 .appointment-content,
 .view-appointment-content,
 .download-report-content,
-.patient-details-content {
+.patient-details-content,
+.technician-content{
     display: none;
 
 }
@@ -71,7 +71,8 @@ body {
         left: 0;
     }
 }
-.appointment-content {
+.appointment-content,
+.technician-content{
     margin-top: 80px;
     margin-left: 200px;
     padding: 20px;

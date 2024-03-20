@@ -7,7 +7,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : User
 */
 body {
-    background: url("../img/technician-bg.jpg");
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
@@ -35,8 +34,8 @@ body {
     background-color: #2c3e50;
     padding-top: 20px;
     position: fixed;
-    left: 0;
-    top: 60px;
+    left: 0; /* Change left property to 0 for initial state */
+    top: 60px; /* Adjust the top property based on your design */
     transition: left 0.3s ease;
 }
 
@@ -51,7 +50,7 @@ body {
 }
 
 .menu a:hover {
-    background-color: #9ba0a5;
+    background-color: #34495e;
 }
 
 .content {
@@ -84,8 +83,25 @@ body {
 }
 
 #report {
-    height: 100px; /* Adjust the height based on your design */
+    height: 100px; 
 }
 
-/* Additional styles for the technician dashboard can be added here */
+.test-details-table table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.test-details-table th,
+.test-details-table td {
+    border: 3px solid #ddd;
+    padding: 8px;
+}
+
+.test-details-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
 

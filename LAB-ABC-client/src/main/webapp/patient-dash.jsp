@@ -147,7 +147,7 @@
 
 
 //********************************* appoitment by patient ************************************************
-           const url = "http://localhost:8080/LAB-ABC-rest-service/resources/appointment/";
+            const url = "http://localhost:8080/LAB-ABC-rest-service/resources/appointment/";
             function makeAppointment() {
                 const person = {
                     "patient_name": document.getElementById("patientName").value,
@@ -155,7 +155,7 @@
                     "time": document.getElementById("appointmentTime").value,
                     "test": document.getElementById("testType").value
                 };
- 
+
                 const options = {
                     method: "POST",
                     headers: {
@@ -163,10 +163,42 @@
                     },
                     body: JSON.stringify(person)
                 };
- 
-                fetch(url, options);
- 
+
+                // Check for conflicts on the client-side before sending the request
+                if (checkForConflicts(person.date, person.time)) {
+                    showNotification("Another patient has already booked the same date and time. Please choose another slot.");
+                    return;
+                }
+
+                fetch(url, options)
+                        .then(response => {
+                            if (response.ok) {
+                                // Appointment successful
+                                showNotification("Appointment booked successfully!");
+                            } else {
+                                // Handle server errors
+                                showNotification("Failed to make appointment. Please try again later.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            showNotification("An error occurred. Please try again later.");
+                        });
             }
+
+            function checkForConflicts(date, time) {
+                // This function should make a request to the server to check for conflicts
+                // Replace this with your actual logic
+                // For now, assume no conflicts on the client-side
+                return false;
+            }
+
+            function showNotification(message) {
+                // Display notification to the user
+                alert(message);
+            }
+
+
 
             function logout() {
                 window.location.href = "http://localhost:8080/LAB-ABC-client/";

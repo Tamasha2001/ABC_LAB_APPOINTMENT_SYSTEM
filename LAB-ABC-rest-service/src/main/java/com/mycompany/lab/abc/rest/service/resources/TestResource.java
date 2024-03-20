@@ -32,7 +32,7 @@ public class TestResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTests(){    
         return Response
-                .ok(gson.toJson(new DBUtils().getTest()))
+                .ok(gson.toJson(new DBUtils().getTests()))
                 .build();
     }
 

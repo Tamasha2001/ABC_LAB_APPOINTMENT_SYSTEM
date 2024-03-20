@@ -11,7 +11,7 @@ public class LoginResource {
  
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response login(Patient patient) {
+    public Response verifyLogin(Patient patient) {
         boolean success = DBUtils.verifyLogin(patient.getEmail(), patient.getPassword());
         if (success) {
             return Response.ok().entity("{\"success\": true}").build();

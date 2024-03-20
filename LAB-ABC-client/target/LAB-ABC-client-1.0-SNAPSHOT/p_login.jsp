@@ -13,7 +13,19 @@
         <title>Login</title>
         <link href="assets/css/login.css" rel="stylesheet">
     </head>
-
+    
+    <body>
+        <div class="login-container">
+            <h1>Patient Login</h1>
+            <form id="loginForm" onsubmit="return checkLogin()">
+                <input type="email" id="email" name="email" placeholder="Email" required><br>
+                <input type="password" id="password" name="password" placeholder="Password" required><br>
+                <button type="submit">Login</button>
+                <label>Don't you have an account - <a href="signup.jsp">Sign up</a></label>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+ 
     <script>
             function checkLogin() {
                 var email = document.getElementById("email").value;
@@ -33,7 +45,8 @@
                                 document.getElementById("message").innerHTML = response.message;
                             }
                         } else {
-                            document.getElementById("message").innerHTML = "An error occurred. Please try again later.";
+                            document.getElementById("message").innerHTML = "Something went wrong. Please give it another go later.";
+                            
                         }
                     }
                 };
@@ -44,16 +57,5 @@
  
  
         </script>
-
-    <body>
-        <div class="login-container">
-            <h1>Patient Login</h1>
-            <form id="loginForm" onsubmit="return checkLogin()">
-                <input type="email" id="email" name="email" placeholder="Email" required><br>
-                <input type="password" id="password" name="password" placeholder="Password" required><br>
-                <button type="submit">Login</button>
-                <label>Don't you have an account - <a href="p-signup.jsp">Sign up</a></label>
-            </form>
-            <div id="message" class="message"></div>
-        </div>
+        </body>
 </html>

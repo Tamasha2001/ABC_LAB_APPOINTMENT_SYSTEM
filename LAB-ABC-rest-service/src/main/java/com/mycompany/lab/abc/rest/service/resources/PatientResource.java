@@ -5,8 +5,10 @@
 package com.mycompany.lab.abc.rest.service.resources;
 import com.google.gson.Gson;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -29,9 +31,9 @@ public class PatientResource {
 
      @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPatient(){    
+    public Response getPatients(){    
         return Response
-                .ok(gson.toJson(new DBUtils().getTest()))
+                .ok(gson.toJson(new DBUtils().getPatients()))
                 .build();
     }
 
@@ -69,11 +71,32 @@ public class PatientResource {
     }
     
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response viewPatient() {
-        List<Patient> patient = new DBUtils().viewPatient();
-        return Response.ok(gson.toJson(patient)).build();
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response viewPatient() {
+//        List<Patient> patient = new DBUtils().viewPatient();
+//        return Response.ok(gson.toJson(patient)).build();
+//    }
+    
+     @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updatePatient(String json, @PathParam("id") int id){ 
+        Patient patient = gson.fromJson(json, Patient.class);
+        new DBUtils().updatePatient(patient);
+        return Response
+                    .ok()
+                    .build();
+    }
+    
+    
+    @DELETE
+    @Path("{id}")
+    public Response deletePatient(@PathParam("id") int id){ 
+        new DBUtils().deletePatient(id);
+        return Response
+            .ok()
+            .build();
     }
 }
 

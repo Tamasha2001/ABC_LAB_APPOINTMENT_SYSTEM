@@ -29,9 +29,9 @@ public class AppointmentResource {
     
      @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAppointment(){    
+    public Response getAppointments(){    
         return Response
-                .ok(gson.toJson(new DBUtils().getAppointment()))
+                .ok(gson.toJson(new DBUtils().getAppointments()))
                 .build();
     }
 

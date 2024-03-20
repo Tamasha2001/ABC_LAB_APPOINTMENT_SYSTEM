@@ -109,6 +109,41 @@ public class DBUtils {
         return false;
     }
     
+    public boolean updatePatient(Patient pt) {
+        try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ) {
+                stmt.executeUpdate("UPDATE  patient SET p_name = '" +pt.getP_name() + "', dob = '" +pt.getDob() + "', gender = '" + pt.getGender()+ "', email = '" + pt.getEmail()+ "',password = '" + pt.getPassword()+ "',contact = '" + pt.getContact()+ "' WHERE (id = '" + pt.getId() +"');");
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+    
+    public boolean deletePatient(int id) {
+        try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ) {
+                stmt.executeUpdate("DELETE FROM patient WHERE (id = '"+ id + "');");
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    
     public List<Patient> viewPatient() {
     List<Patient> patient = new ArrayList<>();
     try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -177,7 +212,7 @@ public class DBUtils {
         return at;
     }
                     
-    public List<Appointment> getAppointment() {
+    public List<Appointment> getAppointments() {
         List<Appointment> appointment = new ArrayList<>();
          try {
             try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
@@ -289,7 +324,7 @@ public class DBUtils {
         return ts;
     }
                     
-    public List<Test> getTest() {
+    public List<Test> getTests() {
         List<Test> test = new ArrayList<>();
          try {
             try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
@@ -340,7 +375,7 @@ public class DBUtils {
             try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
                     Statement stmt = conn.createStatement(); 
                     ) {
-                stmt.executeUpdate("UPDATE test_details SET patient_name = '" +ts.getPatient_name() + "', test_type = '" + ts.getTest_type()+ "', test_date = '" +ts.getTest_date() + "', test_time = '" + ts.getTest_time()+ "', technician_name = '" + ts.getTechnician_name()+ "',referring_doctor = '" + ts.getReferring_doctor()+ "',result_DETAILS = '" + ts.getResult_DETAILS()+ "', WHERE (test_id = '" + ts.getTest_id() +"');");
+                stmt.executeUpdate("UPDATE  test_details SET patient_name = '" +ts.getPatient_name() + "', test_type = '" + ts.getTest_type()+ "', test_date = '" +ts.getTest_date() + "', test_time = '" + ts.getTest_time()+ "', technician_name = '" + ts.getTechnician_name()+ "',referring_doctor = '" + ts.getReferring_doctor()+ "',result_DETAILS = '" + ts.getResult_DETAILS()+ "' WHERE (test_id = '" + ts.getTest_id() +"');");
                 return true;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -368,6 +403,8 @@ public class DBUtils {
         }
         return false;
     }
+
+    
 }
 
 
