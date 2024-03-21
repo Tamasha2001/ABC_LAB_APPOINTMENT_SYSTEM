@@ -290,9 +290,118 @@ public class DBUtils {
         return false;
     }
     
-    //Test
+    //Technician
     
-     public Test getTest(int test_id) throws SQLException {
+     public Technician getTechnician(int tid) throws SQLException {
+        Technician tn = null;
+         try {
+
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM technician WHERE tid="+ tid);) {
+                while (rs.next()) {
+                    tn = new Technician();
+                    tn.setTid( rs.getInt("tid"));
+                    tn.setName( rs.getString("name"));
+                    tn.setGender(rs.getString("gender"));
+                    tn.setEmail(rs.getString("email"));
+                    tn.setUsername(rs.getString("username"));
+                    tn.setPassword(rs.getString("password"));
+                   
+                    break;
+                }
+            } catch (SQLException e) {
+                System.err.print(e);
+                throw e;
+            }
+
+        } catch (SQLException e) {
+            System.err.print(e);
+            throw e;
+        }
+
+        return tn;
+    }
+                    
+    public List<Technician> getTechnicians() {
+        List<Technician> technician = new ArrayList<>();
+         try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM technician");) {
+                while (rs.next()) {
+                    Technician tn = new Technician();
+                    tn.setTid( rs.getInt("tid"));
+                    tn.setName( rs.getString("name"));
+                    tn.setGender(rs.getString("gender"));
+                    tn.setEmail(rs.getString("email"));
+                    tn.setUsername(rs.getString("username"));
+                    tn.setPassword(rs.getString("password"));
+                    technician.add(tn);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        return technician;
+    }
+    
+    public boolean addTechnician(Technician technician) {
+        try {
+            try ( Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);  Statement stmt = conn.createStatement();) {
+                String query = "INSERT INTO technician (tid, name, gender, email, username, password) "
+                        + "VALUES ('" + technician.getTid() + "', '" + technician.getName() + "', '" + technician.getGender() + "', '" + technician.getEmail() + "', '" + technician.getUsername() + "', '" + technician.getPassword() + "');";
+                stmt.executeUpdate(query);
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+   
+    public boolean updateTechnician(Technician tn) {
+        try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ) {
+                stmt.executeUpdate("UPDATE  technician SET name = '" +tn.getName() + "', gender = '" + tn.getGender()+ "', email = '" +tn.getEmail() + "', username = '" + tn.getUsername()+ "', password = '" + tn.getPassword()+ "' WHERE (tid = '" + tn.getTid() +"');");
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+    
+    public boolean deleteTechnician(int tid) {
+        try {
+            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS); 
+                    Statement stmt = conn.createStatement(); 
+                    ) {
+                stmt.executeUpdate("DELETE FROM technician WHERE (tid = '"+ tid + "');");
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public Test getTest(int test_id) throws SQLException {
         Test ts = null;
          try {
 
@@ -404,7 +513,6 @@ public class DBUtils {
         return false;
     }
 
-    
 }
 
 

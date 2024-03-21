@@ -12,6 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lab Appointment System</title>
         <link href="assets/css/patient-dash.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link href="assets/css/appo.css" rel="stylesheet">
     </head>
 
@@ -59,6 +60,7 @@
                             </select>
 
                             <button id="btnmakeAppointment" onclick="makeAppointment()">Submit Appointment</button>
+
                         </form>
                     </div>
                 </section>
@@ -197,6 +199,8 @@
                 // Display notification to the user
                 alert(message);
             }
+
+           
 
 
 

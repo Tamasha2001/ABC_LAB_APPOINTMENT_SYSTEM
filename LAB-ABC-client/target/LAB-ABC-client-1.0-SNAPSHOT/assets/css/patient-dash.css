@@ -78,4 +78,21 @@ body {
     padding: 20px;
 }
 
+.appointmentsTable{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.appointmentsTable th,
+.appointmentsTable td{
+    border: 3px solid #ddd;
+    padding: 8px;
+}
+
+.appointmentsTable th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
 

@@ -28,7 +28,7 @@ public class TestResource {
     }
     
     
-     @GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTests(){    
         return Response

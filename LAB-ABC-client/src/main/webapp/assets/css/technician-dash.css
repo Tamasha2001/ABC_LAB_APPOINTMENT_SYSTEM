@@ -17,6 +17,28 @@ body {
     flex-direction: column;
 }
 
+.container {
+    width: 70%;
+    max-width: 1000px;
+    margin-bottom: 200px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.containers {
+    width: 70%;
+    max-width: 1000px;
+    margin-bottom: 200px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .header {
     background-color: #2c3e50;
     color: #ffffff;
@@ -59,7 +81,8 @@ body {
 
 .appointment-content,
 .upload-report-content,
-.admin-content{
+.admin-content,
+.technician-content{
     display: none;
 }
 
@@ -80,6 +103,12 @@ body {
     margin-left: 200px;
     padding: 20px;
    
+}
+
+.technician-content{
+    margin-top: 80px;
+    margin-left: 200px;
+    padding: 20px;
 }
 
 #report {
@@ -104,4 +133,36 @@ body {
     background-color: #f2f2f2;
 }
 
+.appointment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
+.appointment-table th, .appointment-table td
+.patient-table th , .patient-table td{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.appointment-table th,
+.patient-table th{
+    background-color: #f2f2f2;
+}
+
+.appointment-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.patient-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.appointment-table tbody tr:hover {
+    background-color: #ddd;
+}
+
+.patient-table tbody tr:hover {
+    background-color: #ddd;
+}

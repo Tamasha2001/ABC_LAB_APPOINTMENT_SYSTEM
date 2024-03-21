@@ -11,9 +11,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lab Admin Dashboard</title>
-        <link href="assets/css/technician-dash.css" rel="stylesheet">
-        <link href="assets/css/patient-dash.css" rel="stylesheet">
-        <link href="assets/css/appo.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="assets/css/admin-dash.css" rel="stylesheet">
     </head>
     <body>
         <div class="dashboard-container" style="margin-top: 80px">
@@ -22,78 +21,17 @@
             </div>
 
             <div class="menu" id="sideMenu" style="margin-top: 50px;">
-                <a onclick="showContent('managePatientsContent')" href="#managePatients">Manage Patient</a>
                 <a onclick="showContent('manageTechnicianContent')" href="#manageTechnician">Manage Technician</a>
-                                
+                <a onclick="showContent('managePatientsContent')" href="#managePatients">Manage Patient</a>
+
                 <button onclick="logout()" style="margin-top:190px; margin-left:150px; background-color: red">Logout</button>
             </div>
-        
-            <div class="technician-content" id="managePatientsContent">
-                <section id="managePatients" class="container">
-                    <h1>Manage Patients</h1>
 
-                    <form id="patientDetailsForm" onsubmit="submitPatientDetails()">
-                        <label for="patientId">Patient ID:</label>
-                        <input type="text" id="patientId" name="patientId" required>
-
-                        <label for="patientName">Patient Name:</label>
-                        <input type="text" id="patientName" name="patientName" required>
-
-                        <label for="dob">Date of Birth:</label>
-                        <input type="date" id="dob" name="dob" required>
-
-                        <label for="gender">Gender:</label>
-                        <select id="gender" name="gender" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
-
-                        <label for="contact">Contact:</label>
-                        <input type="text" id="contact" name="contact" required>
-
-                        <div class="button-container" style="display: flex; gap: 40px; max-height: 100px; margin-left: 40px">
-                            <button type="button" onclick="getPatientDetailsById(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Get by ID</button>
-                            <button type="button" onclick="addPatientDetails(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Add</button>
-                            <button type="button" onclick="updatePatientDetails(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Update</button>
-                            <button type="button" onclick="deletePatientDetails(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Delete</button>
-                            <button type="button" onclick="clearPatientDetails(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Clear</button>
-                            <button type="button" onclick="viewallPatientDetails(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">View All</button>
-
-                        </div>
-                    </form>
-                    <br><hr><br>
-
-                    <div id="patientDetailsTable" class="patient-details-table">
-                        <!-- Patient details table will be dynamically populated here -->
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Patient ID</th>
-                                    <th>Patient Name</th>
-                                    <th>Date of Birth</th>
-                                    <th>Gender</th>
-                                    <th>Email</th>
-                                    <th>Contact</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </section>
-            </div>
-
-
-            <div class="technician-content" id="managePatientsContent" style="margin-top: 50px;">
+            <div class="admin-content" id="manageTechnicianContent" style="margin-top: 50px;">
                 <section id="manageTechnician" class="container">
                     <h1>Manage Technicians</h1>
 
-                    <form id="technicianDetailsForm" onsubmit="submitTechnicianDetails()">
+                    <form id="technicianDetailsForm">
                         <label for="technicianId">Technician ID:</label>
                         <input type="text" id="technicianId" name="technicianId" required>
 
@@ -117,18 +55,17 @@
                         <input type="password" id="technicianPassword" name="technicianPassword" required>
 
                         <div class="button-container" style="display: flex; gap: 40px; max-height: 100px; margin-left: 40px">
-                            <button type="button" onclick="getTechnicianDetailsById()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Get by ID</button>
-                            <button type="button" onclick="addTechnicianDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Add</button>
-                            <button type="button" onclick="updateTechnicianDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Update</button>
-                            <button type="button" onclick="deleteTechnicianDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Delete</button>
-                            <button type="button" onclick="clearTechnicianDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Clear</button>
-                            <button type="button" onclick="viewallTechnicianDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">View All</button>
+                            <button id="btngetTechnician" onclick="getTechnician()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Search</button>
+                            <button id="btnaddTechnician" onclick="addTechnician()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Add</button>
+                            <button id="btnupdateTechnician" onclick="updateTechnician()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Update</button>
+                            <button id="btnDeleteTechnician" onclick="deleteTechnician(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Delete</button>
+                            <button id="btnclearTechnicianDetails" onclick="clearTechnicianDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Clear</button>
+                            <button id="btnviewallTechnicianDetails" onclick="viewallTechnicianDetails()" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">View All</button>
                         </div>
                     </form>
                     <br><hr><br>
 
                     <div id="technicianDetailsTable" class="technician-details-table">
-                        <!-- Technician details table will be dynamically populated here -->
                         <table>
                             <thead>
                                 <tr>
@@ -144,13 +81,84 @@
                     </div>
                 </section>
             </div>
+            <!--***********************************************************************************************************-->
+            <div class="admin-content" id="managePatientsContent">
+                <section id="managePatients" class="container">
+                    <h1>Manage Patients</h1>
+
+                    <div class="section" id="getPatientSection">
+                        <h3>Get Patient by ID</h3>
+                        <form id="getPatientForm">
+                            <label for="getPatientId">Patient ID:</label>
+                            <input type="text" id="getPatientId" name="getPatientId" required>
+                            <button onclick="getPatient(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Get Details</button>
+                        </form>
+                    </div>
+
+                    <div class="section" id="modifyPatientSection">
+                        <h3>Add, Update, or Delete Patient</h3>
+                        <form id="modifyPatientForm">
+
+                            <label for="patientName">Patient Name:</label>
+                            <input type="text" id="patientName" name="patientName" required>
+
+                            <label for="dob">Date of Birth:</label>
+                            <input type="date" id="dob" name="dob" required>
+
+                            <label for="gender">Gender:</label>
+                            <select id="gender" name="gender" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+
+                            <label for="contact">Contact:</label>
+                            <input type="text" id="contact" name="contact" required>                            
+                            <button onclick="addPatient(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Add</button>
+                            <button onclick="updatePatient(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Update</button>
+                            <button onclick="deletePatient(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Delete</button>
+                            <button onclick="clearPatientDetails(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Clear</button>
+                        </form>
+                    </div>
+
+                    <div class="section" id="viewPatientSection">
+                        <h3>View Patient Details</h3>
+                        <button onclick="viewAllPatients(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">View All</button>
+                         <div id="patientDetailsTable" class="patient-details-table">
+                        <table id="patientDetailsTable">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Patient Name</th>
+                                    <th>Date of Birth</th>
+                                    <th>Gender</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Contact</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    </div>
+
+                </section>
+            </div>
+
         </div>
+
+
 
         <script>
             window.onload = function () {
                 var menu = document.getElementById("sideMenu");
                 menu.style.left = "0px";
-                showContent('managePatientsContent');
+                showContent('manageTechnicianContent');
             };
 
             function toggleMenu() {
@@ -163,49 +171,200 @@
             }
 
             function showContent(contentId) {
-                var contentElements = document.querySelectorAll('.technician-content');
+                var contentElements = document.querySelectorAll('.admin-content');
                 for (var i = 0; i < contentElements.length; i++) {
                     contentElements[i].style.display = 'none';
                 }
 
                 var selectedContent = document.getElementById(contentId);
                 selectedContent.style.display = 'block';
-                if (contentId === 'manageTechnicianContent') {
-                    // Code for fetching technician details
+                if (contentId === 'managePatientsContent') {
+                    fetchAppointmentDetails();
                 }
+            }
+//****************************************************************************************************************
+
+            const technicianDetailsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/technician/";
+
+            function getTechnician() {
+                event.preventDefault();
+                let tid = document.getElementById("technicianId").value;
+                const options = {
+                    method: "GET"
+                };
+                fetch(technicianDetailsUrl + tid, options)
+                        .then(res => {
+                            if (!res.ok) {
+                                throw new Error('Technician details not found');
+                            }
+                            return res.json();
+                        })
+                        .then(data => {
+                            document.getElementById("technicianName").value = data.name;
+                            document.getElementById("technicianGender").value = data.gender;
+                            document.getElementById("technicianEmail").value = data.email;
+                            document.getElementById("technicianUsername").value = data.username;
+                            document.getElementById("technicianPassword").value = data.password;
+                        })
+                        .catch(error => {
+                            alert(error.message); // Display alert for error message
+                        });
             }
 
 
+            function addTechnician() {
+                event.preventDefault();
+                let tid = document.getElementById("technicianId").value;
+
+                fetch(technicianDetailsUrl + tid)
+                        .then(response => {
+                            if (response.ok) {
+                                alert("Technician ID is already in use. Please choose a different ID.");
+                            } else {
+                                const person = {
+                                    "tid": tid,
+                                    "name": document.getElementById("technicianName").value,
+                                    "gender": document.getElementById("technicianGender").value,
+                                    "email": document.getElementById("technicianEmail").value,
+                                    "username": document.getElementById("technicianUsername").value,
+                                    "password": document.getElementById("technicianPassword").value
+                                };
+
+                                const options = {
+                                    method: "POST",
+                                    headers: {
+                                        "content-type": "application/json"
+                                    },
+                                    body: JSON.stringify(person)
+                                };
+
+                                fetch(technicianDetailsUrl, options)
+                                        .then(response => {
+                                            if (response.ok) {
+                                                alert("Technician details added successfully!");
+                                                document.getElementById("technicianDetailsForm").reset(); // Reset the form
+                                            } else {
+                                                throw new Error("Failed to add technician.");
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert("An error occurred. Please try again later.");
+                                        });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("An error occurred. Please try again later.");
+                        });
+            }
+
+
+
+            function updateTechnician() {
+                event.preventDefault();
+
+                let tid = document.getElementById("technicianId").value;
+                const person = {
+                    "tid": tid,
+                    "name": document.getElementById("technicianName").value,
+                    "gender": document.getElementById("technicianGender").value,
+                    "email": document.getElementById("technicianEmail").value,
+                    "username": document.getElementById("technicianUsername").value,
+                    "password": document.getElementById("technicianPassword").value
+                };
+                const options = {
+                    method: "PUT",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(person)
+                };
+
+                fetch(technicianDetailsUrl + tid, options)
+                        .then(response => {
+                            if (response.ok) {
+                                alert("Technician details updated successfully!");
+                                document.getElementById("technicianDetailsForm").reset();
+                            } else {
+                                throw new Error("Failed to update technician details. Please try again later.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("An error occurred. Please try again later.");
+                        });
+            }
+
+
+            function deleteTechnician(event) {
+                event.preventDefault();
+
+                let tid = document.getElementById("technicianId").value;
+
+                if (!tid) {
+                    alert("Please enter a valid Technician ID.");
+                    return;
+                }
+
+                fetch(technicianDetailsUrl + tid, {
+                    method: "DELETE"
+                })
+                        .then(response => {
+                            if (response.ok) {
+                                alert("Technician deleted successfully!");
+                                document.getElementById("technicianDetailsForm").reset();
+                            } else {
+                                throw new Error("Failed to delete technician.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Failed to delete technician. " + error.message);
+                        });
+            }
+
+            function clearTechnicianDetails() {
+                event.preventDefault();
+                document.getElementById("technicianDetailsForm").reset();
+            }
 
 //**********************************************************************************************************
             const patientDetailsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/patient/";
 
             function getPatient() {
                 event.preventDefault();
-                let id = document.getElementById("patientId").value;
+                let id = document.getElementById("getPatientId").value;
                 const options = {
                     method: "GET"
                 };
                 fetch(patientDetailsUrl + id, options)
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data !== null) {
-                                document.getElementById("patientName").value = data.p_name;
-                                document.getElementById("dob").value = data.dob;
-                                document.getElementById("gender").value = data.gender;
-                                document.getElementById("email").value = data.email;
-                                document.getElementById("password").value = data.password;
-                                document.getElementById("contact").value = data.contact;
-                            } else {
-                                alert("Patient details not found");
+                        .then(res => {
+                            if (!res.ok) {
+                                throw new Error('Patient details not found');
                             }
+                            return res.json();
+                        })
+                        .then(data => {
+                            console.log(data); // Log the response data to check for dob and gender
+                            document.getElementById("patientName").value = data.p_name;
+                            document.getElementById("dob").value = data.dob;
+                            document.getElementById("gender").value = data.gender;
+                            document.getElementById("email").value = data.email;
+                            document.getElementById("password").value = data.password;
+                            document.getElementById("contact").value = data.contact;
+                        })
+                        .catch(error => {
+                            alert(error.message); // Display alert for error message
                         });
             }
 
+
+
             function addPatient() {
                 event.preventDefault();
+
                 const person = {
-                    "id": document.getElementById("patientId").value,
                     "p_name": document.getElementById("patientName").value,
                     "dob": document.getElementById("dob").value,
                     "gender": document.getElementById("gender").value,
@@ -226,9 +385,9 @@
                         .then(response => {
                             if (response.ok) {
                                 alert("Patient details added successfully!");
-                                document.getElementById("patientDetailsForm").reset(); // Reset the form
+                                document.getElementById("modifyPatientForm").reset();
+                                document.getElementById("getPatientForm").reset();// Reset the form
                             } else {
-                                // Test addition failed
                                 throw new Error("Failed to add patient.");
                             }
                         })
@@ -242,7 +401,7 @@
             function updatePatient() {
                 event.preventDefault();
 
-                let id = document.getElementById("patientId").value;
+                let id = document.getElementById("getPatientId").value;
                 const person = {
                     "id": id,
                     "p_name": document.getElementById("patientName").value,
@@ -250,7 +409,7 @@
                     "gender": document.getElementById("gender").value,
                     "email": document.getElementById("email").value,
                     "password": document.getElementById("password").value,
-                    "contact": document.getElementById("contact").value;
+                    "contact": document.getElementById("contact").value
                 };
                 const options = {
                     method: "PUT",
@@ -264,9 +423,9 @@
                         .then(response => {
                             if (response.ok) {
                                 alert("Patient details updated successfully!");
-                                document.getElementById("patientDetailsForm").reset();
+                                document.getElementById("modifyPatientForm").reset();
+                                document.getElementById("getPatientForm").reset();
                             } else {
-
                                 throw new Error("Failed to update patient details. Please try again later.");
                             }
                         })
@@ -280,170 +439,79 @@
             function deletePatient(event) {
                 event.preventDefault();
 
-                let id = document.getElementById("patientId").value;
+                let id = document.getElementById("getPatientId").value;
 
                 if (!id) {
                     alert("Please enter a valid Patient ID.");
                     return;
                 }
 
-                // Fetch the existing data to check if ID matches
-                fetch(patientDetailsUrl + id)
+                fetch(patientDetailsUrl + id, {
+                    method: "DELETE"
+                })
                         .then(response => {
                             if (response.ok) {
-                                // If ID exists, proceed with deletion
-                                const options = {
-                                    method: "DELETE"
-                                };
-
-                                return fetch(patientDetailsUrl + id, options);
+                                alert("Patient deleted successfully!");
+                                document.getElementById("modifyPatientForm").reset();
+                                document.getElementById("getPatientForm").reset();
                             } else {
-                                // If ID doesn't exist, show error message
-                                throw new Error("Patient ID does not exist.");
-                            }
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                alert("Data deleted successfully!");
-                                document.getElementById("patientDetailsForm").reset();
-                            } else {
-                                throw new Error("Failed to delete data.");
+                                throw new Error("Failed to delete patient.");
                             }
                         })
                         .catch(error => {
                             console.error("Error:", error);
-                            alert("Failed to delete data. " + error.message);
+                            alert("Failed to delete patient. " + error.message);
                         });
             }
-
-
 
             function clearPatientDetails() {
                 event.preventDefault();
-                document.getElementById("patientDetailsForm").reset();
+                document.getElementById("modifyPatientForm").reset();
+                document.getElementById("getPatientForm").reset();
             }
 
-
-//**************************************************************************************************************
-            function getTechnicianDetailsById() {
-                let technicianId = document.getElementById("technicianId").value;
-                const options = {
-                    method: "GET"
-                };
-                fetch(technicianDetailsUrl + technicianId, options)
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data !== null) {
-                                document.getElementById("technicianName").value = data.technician_name;
-                                document.getElementById("technicianGender").value = data.gender;
-                                document.getElementById("technicianEmail").value = data.email;
-                                document.getElementById("technicianUsername").value = data.username;
-                                document.getElementById("technicianPassword").value = data.password;
-                            } else {
-                                alert("Technician details not found");
+            function getPatients() {
+                fetch(patientDetailsUrl + id, options)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
                             }
-                        });
-            }
-
-            function addTechnicianDetails() {
-                const technicianDetails = {
-                    "technician_name": document.getElementById("technicianName").value,
-                    "gender": document.getElementById("technicianGender").value,
-                    "email": document.getElementById("technicianEmail").value,
-                    "username": document.getElementById("technicianUsername").value,
-                    "password": document.getElementById("technicianPassword").value
-                };
-                const options = {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify(technicianDetails)
-                };
-                fetch(technicianDetailsUrl, options);
-            }
-
-            function updateTechnicianDetails() {
-                let technicianId = document.getElementById("technicianId").value;
-                const technicianDetails = {
-                    "technician_name": document.getElementById("technicianName").value,
-                    "gender": document.getElementById("technicianGender").value,
-                    "email": document.getElementById("technicianEmail").value,
-                    "username": document.getElementById("technicianUsername").value,
-                    "password": document.getElementById("technicianPassword").value
-                };
-                const options = {
-                    method: "PUT",
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify(technicianDetails)
-                };
-                fetch(technicianDetailsUrl + technicianId, options);
-            }
-
-            function deleteTechnicianDetails() {
-                let technicianId = document.getElementById("technicianId").value;
-                const options = {
-                    method: "DELETE"
-                };
-                fetch(technicianDetailsUrl + technicianId, options);
-            }
-
-            function clearTechnicianDetails() {
-                document.getElementById("technicianId").value = "";
-                document.getElementById("technicianName").value = "";
-                document.getElementById("technicianGender").value = "";
-                document.getElementById("technicianEmail").value = "";
-                document.getElementById("technicianUsername").value = "";
-                document.getElementById("technicianPassword").value = "";
-            }
-
-            function viewAllPatientDetails() {
-                fetch(patientDetailsUrl)
-                        .then(res => res.json())
+                            return response.json();
+                        })
                         .then(data => {
-                            // Clear existing table rows
-                            const table = document.getElementById("patientDetailsTable").getElementsByTagName('tbody')[0];
-                            table.innerHTML = "";
+                            var tableBody = $('#patientDetailsTable');
 
-                            // Populate table with fetched data
-                            data.forEach(patient => {
-                                const row = table.insertRow();
-                                row.innerHTML = `
-                    <td>${patient.patient_id}</td>
-                    <td>${patient.patient_name}</td>
-                    <td>${patient.dob}</td>
-                    <td>${patient.gender}</td>
-                    <td>${patient.email}</td>
-                    <td>${patient.contact}</td>
-                `;
-                            });
+                            tableBody.empty();
+
+                            if (data.length === 0) {
+                                tableBody.append('<tr><td colspan="5">No patient found</td></tr>');
+                            } else {
+                                data.forEach(function (patient) {
+                                    var row = '<tr>' +
+                                            '<td>' + patient.id + '</td>' +
+                                            '<td>' + patient.p_name + '</td>' +
+                                            '<td>' + patient.dob + '</td>' +
+                                            '<td>' + patient.gender + '</td>' +
+                                            '<td>' + patient.email + '</td>' +
+                                            '<td>' + patient.password + '</td>' +
+                                            '<td>' + patient.contact + '</td>' +
+                                            '</tr>';
+                                    tableBody.append(row);
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching or parsing data:', error);
+                            // Handle error, e.g., display a message to the user
                         });
             }
 
-            function viewAllTechnicianDetails() {
-                fetch(technicianDetailsUrl)
-                        .then(res => res.json())
-                        .then(data => {
-                            // Clear existing table rows
-                            const table = document.getElementById("technicianDetailsTable").getElementsByTagName('tbody')[0];
-                            table.innerHTML = "";
+            // Function to call getAppointments() when search button is clicked
+            $('#viewAllPatients').click(function () {
+                getPatients();
+            });
 
-                            // Populate table with fetched data
-                            data.forEach(technician => {
-                                const row = table.insertRow();
-                                row.innerHTML = `
-                    <td>${technician.technician_id}</td>
-                    <td>${technician.technician_name}</td>
-                    <td>${technician.gender}</td>
-                    <td>${technician.email}</td>
-                    <td>${technician.username}</td>
-                    <td>${technician.password}</td>
-                `;
-                            });
-                        });
-            }
+
 
             function logout() {
                 window.location.href = "http://localhost:8080/LAB-ABC-client/";

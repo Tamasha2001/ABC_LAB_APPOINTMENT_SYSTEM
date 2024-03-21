@@ -10,6 +10,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lab Technician Dashboard</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link href="assets/css/technician-dash.css" rel="stylesheet">
         <link href="assets/css/patient-dash.css" rel="stylesheet">
         <link href="assets/css/appo.css" rel="stylesheet">
@@ -29,9 +30,9 @@
                 <a onclick="showContent('uploadReportContent')" href="#uploadReport">View Payments</a>
 
                 <button onclick="logout()" style="margin-top:190px; margin-left:150px; background-color: red">Logout</button>
-               
+
             </div>
-        
+
 
             <div class="technician-content" id="uploadReportContent">
                 <section id="uploadReport" class="container">
@@ -64,6 +65,7 @@
 
                         <label for="testType">Test Type:</label>
                         <select id="testType" name="testType" required>
+                            <option value="select">Select test type</option>
                             <option value="Blood Test">Blood Test</option>
                             <option value="Urinalysis">Urinalysis</option>
                             <option value="Imaging Tests">Imaging Tests</option>
@@ -80,6 +82,7 @@
 
                         <label for="technicianName">Technician Name:</label>
                         <select id="technicianName" name="technicianName" required>
+                            <option value="select">Select technician</option>
                             <option value="D.I.K.Thilakarathna">D.I.K.Thilakarathna</option>
                             <option value="A.S.Perera">A.S.Perera</option>
                             <option value="D.M.Silva">D.M.Silva</option>
@@ -90,6 +93,7 @@
 
                         <label for="referringDoctor">Referring Doctor:</label>
                         <select id="referringDoctor" name="referringDoctor" required>
+                            <option value="select">Select doctor</option>
                             <option value="Dr.Ananda">Dr.Ananda</option>
                             <option value="Dr.Lakshman">Dr.Lakshman</option>
                             <option value="Dr.Silva">Dr.Silva</option>
@@ -108,36 +112,38 @@
 
                         </div>
                     </form>
-                    <br><hr><br>
+                     </section>
 
-                    <div class="button-container">
-                        <button id="btnViewAll" onclick="viewAll()">View All</button>
-                    </div>
-                    <div id="testDetailsTable" class="test-details-table">
-                        <!-- Test details table will be dynamically populated here -->
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Test ID</th>
-                                    <th>Patient Name</th>
-                                    <th>Test Type</th>
-                                    <th>Test Date</th>
-                                    <th>Test Time</th>
-                                    <th>Technician Name</th>
-                                    <th>Referring Doctor</th>
-                                    <th>Result Details</th>
-                                </tr>
-                            </thead>
-                        </table>
-
-                    </div>
-                </section>
+                    <div class="button-container" id="manageTestContent">
+                        <section id="testdetails" class="containers">
+                            <h2 class="dashboard-heading">View Test Details</h2>
+                            <br>
+                            <table id="testDetailsTable" class="test-details-table">
+                                <thead>
+                                    <tr>
+                                        <th>Test ID</th>
+                                        <th>Patient Name</th>
+                                        <th>Test Type</th>
+                                        <th>Test Date</th>
+                                        <th>Test Time</th>
+                                        <th>Technician Name</th>
+                                        <th>Referring Doctor</th>
+                                        <th>Result Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="testTableBody">
+                                </tbody>
+                            </table>
+                        </section>
+                  </div>
+     
             </div>
 
             <div class="technician-content" id="appointmentsContent">
                 <section id="appointments" class="container">
-                    <h1>Appointments</h1>
-                    <table id="appointmentTable" class="appointment-table">
+                    <h2 class="dashboard-heading">View Appointments</h2>
+                    <br>
+                    <table id="appointmentsTable" class="appointment-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -147,8 +153,7 @@
                                 <th>Test Type</th>
                             </tr>
                         </thead>
-                        <tbody id="appointmentList" class="appointment-list">
-                            <!-- Appointment details will be dynamically populated here -->
+                        <tbody id="appointmentsTableBody">
                         </tbody>
                     </table>
                 </section>
@@ -156,8 +161,9 @@
 
             <div class="technician-content" id="viewPatientsContent">
                 <section id="viewPatients" class="container">
-                    <h1>View Patients</h1>
-                    <table id="appointmentTable" class="appointment-table">
+                    <h2 class="dashboard-heading">View Patients</h2>
+                    <br>
+                    <table id="patientTable" class="patient-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -169,366 +175,395 @@
                                 <th>Contact</th>
                             </tr>
                         </thead>
-                        <tbody id="patientsList" class="patients-list">
+                        <tbody id="patientsList">
                         </tbody>
                     </table>
                 </section>
             </div>
 
-</div>
+        </div>
 
-            <script>
-                window.onload = function () {
-                    // Set the initial position of the menu to be visible
-                    var menu = document.getElementById("sideMenu");
+        <script>
+            window.onload = function () {
+                // Set the initial position of the menu to be visible
+                var menu = document.getElementById("sideMenu");
+                menu.style.left = "0px";
+                // Display the appointment form content
+                showContent('uploadReportContent');
+                // Add an event listener for file input change
+                document.getElementById('uploadReportFile').addEventListener('change', handleFileSelect);
+            };
+            function toggleMenu() {
+                var menu = document.getElementById("sideMenu");
+                if (menu.style.left === "0px") {
+                    menu.style.left = "-250px";
+                } else {
                     menu.style.left = "0px";
-                    // Display the appointment form content
-                    showContent('uploadReportContent');
-                    // Add an event listener for file input change
-                    document.getElementById('uploadReportFile').addEventListener('change', handleFileSelect);
-                };
-                function toggleMenu() {
-                    var menu = document.getElementById("sideMenu");
-                    if (menu.style.left === "0px") {
-                        menu.style.left = "-250px";
+                }
+            }
+
+            function showContent(contentId) {
+                var contentElements = document.querySelectorAll('.technician-content');
+                for (var i = 0; i < contentElements.length; i++) {
+                    contentElements[i].style.display = 'none';
+                }
+
+                var selectedContent = document.getElementById(contentId);
+                selectedContent.style.display = 'block';
+                if (contentId === 'manageTestContent') {
+                    fetchAppointmentDetails();
+                }
+            }
+//**************************************************************************************************************
+
+            //Upload report
+            function submitReport() {
+                var appointmentId = document.getElementById('appointmentId').value;
+                var reportFileInput = document.getElementById('uploadReportFile');
+                var reportFile = reportFileInput.files[0];
+                if (!appointmentId) {
+                    alert('Please enter the Appointment ID.');
+                    return;
+                }
+
+                if (!reportFile) {
+                    alert('Please select a PDF report file.');
+                    return;
+                }
+
+                // You can handle the file (e.g., upload to the server) here
+                handleReportUpload(appointmentId, reportFile);
+            }
+
+            function handleReportUpload(appointmentId, reportFile) {
+                // Perform any necessary actions here
+                // For demonstration purposes, display a success message
+                var reportUploadResult = document.getElementById('reportUploadResult');
+                reportUploadResult.innerHTML = 'Report uploaded successfully for Appointment ID: ' + appointmentId;
+            }
+
+            function handleFileSelect(event) {
+                var fileInput = event.target;
+                var files = fileInput.files;
+                if (files.length > 0) {
+                    var file = files[0];
+                    if (file.type === 'application/pdf') {
+                        readPDFFile(file);
                     } else {
-                        menu.style.left = "0px";
+                        alert('Please select a valid PDF file.');
                     }
                 }
+            }
 
-                function showContent(contentId) {
-                    var contentElements = document.querySelectorAll('.technician-content');
-                    for (var i = 0; i < contentElements.length; i++) {
-                        contentElements[i].style.display = 'none';
-                    }
+            function readPDFFile(file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var pdfContent = e.target.result;
+                    // Handle the PDF content, e.g., upload to the server or display it
+                    displayPDFContent(pdfContent);
+                };
+                reader.readAsDataURL(file);
+            }
 
-                    var selectedContent = document.getElementById(contentId);
-                    selectedContent.style.display = 'block';
-                    if (contentId === 'manageTestContent') {
-                        fetchAppointmentDetails();
-                    }
+            function displayPDFContent(pdfContent) {
+                var reportContainer = document.getElementById('report');
+                reportContainer.innerHTML = '<embed src="' + pdfContent + '" type="application/pdf" width="100%" height="600px" />';
+            }
+
+//*****************************Manage test details***************************************************************
+
+            const testDetailsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/test/";
+
+            function getTest() {
+                event.preventDefault();
+                let test_id = document.getElementById("testDetailsId").value;
+                const options = {
+                    method: "GET"
+                };
+                fetch(testDetailsUrl + test_id, options)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data !== null) {
+                                document.getElementById("patientName").value = data.patient_name;
+                                document.getElementById("testType").value = data.test_type;
+                                document.getElementById("testDate").value = data.test_date;
+                                document.getElementById("testTime").value = data.test_time;
+                                document.getElementById("technicianName").value = data.technician_name;
+                                document.getElementById("referringDoctor").value = data.referring_doctor;
+                                document.getElementById("resultDetails").value = data.result_DETAILS;
+                            } else {
+                                alert("Test details not found");
+                            }
+                        });
+            }
+
+            function addTest() {
+                event.preventDefault();
+                let testId = document.getElementById("testDetailsId").value;
+
+                // Check if the test ID already exists
+                fetch(testDetailsUrl + testId)
+                        .then(response => {
+                            if (response.ok) {
+                                // If ID exists, show alert for duplicate ID
+                                alert("Test ID is already in use. Please choose a different ID.");
+                            } else {
+                                // If ID doesn't exist, proceed with adding the test
+                                const person = {
+                                    "test_id": testId,
+                                    "patient_name": document.getElementById("patientName").value,
+                                    "test_type": document.getElementById("testType").value,
+                                    "test_date": document.getElementById("testDate").value,
+                                    "test_time": document.getElementById("testTime").value,
+                                    "technician_name": document.getElementById("technicianName").value,
+                                    "referring_doctor": document.getElementById("referringDoctor").value,
+                                    "result_DETAILS": document.getElementById("resultDetails").value
+                                };
+
+                                const options = {
+                                    method: "POST",
+                                    headers: {
+                                        "content-type": "application/json"
+                                    },
+                                    body: JSON.stringify(person)
+                                };
+
+                                fetch(testDetailsUrl, options)
+                                        .then(response => {
+                                            if (response.ok) {
+                                                alert("Test details added successfully!");
+                                                document.getElementById("testDetailsForm").reset(); // Reset the form
+                                            } else {
+                                                // Test addition failed
+                                                throw new Error("Failed to add test.");
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert("An error occurred. Please try again later.");
+                                        });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("An error occurred. Please try again later.");
+                        });
+            }
+
+
+
+            function updateTest() {
+                event.preventDefault();
+
+                let test_id = document.getElementById("testDetailsId").value;
+                const person = {
+                    "test_id": test_id,
+                    "patient_name": document.getElementById("patientName").value,
+                    "test_type": document.getElementById("testType").value,
+                    "test_date": document.getElementById("testDate").value,
+                    "test_time": document.getElementById("testTime").value,
+                    "technician_name": document.getElementById("technicianName").value,
+                    "referring_doctor": document.getElementById("referringDoctor").value,
+                    "result_DETAILS": document.getElementById("resultDetails").value
+                };
+                const options = {
+                    method: "PUT",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(person)
+                };
+
+                fetch(testDetailsUrl + test_id, options)
+                        .then(response => {
+                            if (response.ok) {
+                                // Test update successful
+                                alert("Test details updated successfully!");
+                                document.getElementById("testDetailsForm").reset();
+                            } else {
+                                // Test update failed
+                                throw new Error("Failed to update test details. Please try again later.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("An error occurred. Please try again later.");
+                        });
+            }
+
+
+            function deleteTest(event) {
+                event.preventDefault();
+
+                let test_id = document.getElementById("testDetailsId").value;
+
+                if (!test_id) {
+                    alert("Please enter a valid Test ID.");
+                    return;
                 }
 
+                fetch(testDetailsUrl + test_id)
+                        .then(response => {
+                            if (response.ok) {
+                                const options = {
+                                    method: "DELETE"
+                                };
 
-                //Upload report
-                function submitReport() {
-                    var appointmentId = document.getElementById('appointmentId').value;
-                    var reportFileInput = document.getElementById('uploadReportFile');
-                    var reportFile = reportFileInput.files[0];
-                    if (!appointmentId) {
-                        alert('Please enter the Appointment ID.');
-                        return;
-                    }
-
-                    if (!reportFile) {
-                        alert('Please select a PDF report file.');
-                        return;
-                    }
-
-                    // You can handle the file (e.g., upload to the server) here
-                    handleReportUpload(appointmentId, reportFile);
-                }
-
-                function handleReportUpload(appointmentId, reportFile) {
-                    // Perform any necessary actions here
-                    // For demonstration purposes, display a success message
-                    var reportUploadResult = document.getElementById('reportUploadResult');
-                    reportUploadResult.innerHTML = 'Report uploaded successfully for Appointment ID: ' + appointmentId;
-                }
-
-                function handleFileSelect(event) {
-                    var fileInput = event.target;
-                    var files = fileInput.files;
-                    if (files.length > 0) {
-                        var file = files[0];
-                        if (file.type === 'application/pdf') {
-                            readPDFFile(file);
-                        } else {
-                            alert('Please select a valid PDF file.');
-                        }
-                    }
-                }
-
-                function readPDFFile(file) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var pdfContent = e.target.result;
-                        // Handle the PDF content, e.g., upload to the server or display it
-                        displayPDFContent(pdfContent);
-                    };
-                    reader.readAsDataURL(file);
-                }
-
-                function displayPDFContent(pdfContent) {
-                    var reportContainer = document.getElementById('report');
-                    reportContainer.innerHTML = '<embed src="' + pdfContent + '" type="application/pdf" width="100%" height="600px" />';
-                }
-
-                //*****************************Manage test details*******************************
-                const testDetailsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/test/";
-
-                function getTest() {
-                    event.preventDefault();
-                    let test_id = document.getElementById("testDetailsId").value;
-                    const options = {
-                        method: "GET"
-                    };
-                    fetch(testDetailsUrl + test_id, options)
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data !== null) {
-                                    document.getElementById("patientName").value = data.patient_name;
-                                    document.getElementById("testType").value = data.test_type;
-                                    document.getElementById("testDate").value = data.test_date;
-                                    document.getElementById("testTime").value = data.test_time;
-                                    document.getElementById("technicianName").value = data.technician_name;
-                                    document.getElementById("referringDoctor").value = data.referring_doctor;
-                                    document.getElementById("resultDetails").value = data.result_DETAILS;
-                                } else {
-                                    alert("Test details not found");
-                                }
-                            });
-                }
-
-                function addTest() {
-                    event.preventDefault();
-                    let testId = document.getElementById("testDetailsId").value;
-
-                    // Check if the test ID already exists
-                    fetch(testDetailsUrl + testId)
-                            .then(response => {
-                                if (response.ok) {
-                                    // If ID exists, show alert for duplicate ID
-                                    alert("Test ID is already in use. Please choose a different ID.");
-                                } else {
-                                    // If ID doesn't exist, proceed with adding the test
-                                    const person = {
-                                        "test_id": testId,
-                                        "patient_name": document.getElementById("patientName").value,
-                                        "test_type": document.getElementById("testType").value,
-                                        "test_date": document.getElementById("testDate").value,
-                                        "test_time": document.getElementById("testTime").value,
-                                        "technician_name": document.getElementById("technicianName").value,
-                                        "referring_doctor": document.getElementById("referringDoctor").value,
-                                        "result_DETAILS": document.getElementById("resultDetails").value
-                                    };
-
-                                    const options = {
-                                        method: "POST",
-                                        headers: {
-                                            "content-type": "application/json"
-                                        },
-                                        body: JSON.stringify(person)
-                                    };
-
-                                    fetch(testDetailsUrl, options)
-                                            .then(response => {
-                                                if (response.ok) {
-                                                    alert("Test details added successfully!");
-                                                    document.getElementById("testDetailsForm").reset(); // Reset the form
-                                                } else {
-                                                    // Test addition failed
-                                                    throw new Error("Failed to add test.");
-                                                }
-                                            })
-                                            .catch(error => {
-                                                console.error('Error:', error);
-                                                alert("An error occurred. Please try again later.");
-                                            });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert("An error occurred. Please try again later.");
-                            });
-                }
+                                return fetch(testDetailsUrl + test_id, options);
+                            } else {
+                                throw new Error("Test ID does not exist.");
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                alert("Data deleted successfully!");
+                                document.getElementById("testDetailsForm").reset();
+                            } else {
+                                throw new Error("Failed to delete data.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Failed to delete data. " + error.message);
+                        });
+            }
 
 
 
-                function updateTest() {
-                    event.preventDefault();
-
-                    let test_id = document.getElementById("testDetailsId").value;
-                    const person = {
-                        "test_id": test_id,
-                        "patient_name": document.getElementById("patientName").value,
-                        "test_type": document.getElementById("testType").value,
-                        "test_date": document.getElementById("testDate").value,
-                        "test_time": document.getElementById("testTime").value,
-                        "technician_name": document.getElementById("technicianName").value,
-                        "referring_doctor": document.getElementById("referringDoctor").value,
-                        "result_DETAILS": document.getElementById("resultDetails").value
-                    };
-                    const options = {
-                        method: "PUT",
-                        headers: {
-                            "content-type": "application/json"
-                        },
-                        body: JSON.stringify(person)
-                    };
-
-                    fetch(testDetailsUrl + test_id, options)
-                            .then(response => {
-                                if (response.ok) {
-                                    // Test update successful
-                                    alert("Test details updated successfully!");
-                                    document.getElementById("testDetailsForm").reset();
-                                } else {
-                                    // Test update failed
-                                    throw new Error("Failed to update test details. Please try again later.");
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert("An error occurred. Please try again later.");
-                            });
-                }
-
-
-                function deleteTest(event) {
-                    event.preventDefault();
-
-                    let test_id = document.getElementById("testDetailsId").value;
-
-                    if (!test_id) {
-                        alert("Please enter a valid Test ID.");
-                        return;
-                    }
-
-                    // Fetch the existing data to check if ID matches
-                    fetch(testDetailsUrl + test_id)
-                            .then(response => {
-                                if (response.ok) {
-                                    // If ID exists, proceed with deletion
-                                    const options = {
-                                        method: "DELETE"
-                                    };
-
-                                    return fetch(testDetailsUrl + test_id, options);
-                                } else {
-                                    // If ID doesn't exist, show error message
-                                    throw new Error("Test ID does not exist.");
-                                }
-                            })
-                            .then(response => {
-                                if (response.ok) {
-                                    alert("Data deleted successfully!");
-                                    document.getElementById("testDetailsForm").reset();
-                                } else {
-                                    throw new Error("Failed to delete data.");
-                                }
-                            })
-                            .catch(error => {
-                                console.error("Error:", error);
-                                alert("Failed to delete data. " + error.message);
-                            });
-                }
-
-
-
-                function clearTestDetails() {
-                    event.preventDefault();
-                    document.getElementById("testDetailsForm").reset();
-                }
+            function clearTestDetails() {
+                event.preventDefault();
+                document.getElementById("testDetailsForm").reset();
+            }
 
 
 // Function to fetch and display all test details
-                function viewAll() {
-                    event.preventDefault();
-                    fetch(testDetailsUrl, options)
-                            .then(response => response.json())
-                            .then(data => {
-                                const tableBody = document.querySelector('#testDetailsTable table tbody');
-                                tableBody.innerHTML = ''; // Clear previous data
+            $(document).ready(function () {
+                // Fetch data from API
+                fetch('http://localhost:8080/LAB-ABC-rest-service/resources/test')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            var tableBody = $('#testTableBody');
 
-                                data.forEach(test => {
-                                    const row = document.createElement('tr');
-                                    row.innerHTML = `
-                    <td>${test.test_id}</td>
-                    <td>${test.patient_name}</td>
-                    <td>${test.test_type}</td>
-                    <td>${test.test_date}</td>
-                    <td>${test.test_time}</td>
-                    <td>${test.technician_name}</td>
-                    <td>${test.referring_doctor}</td>
-                    <td>${test.result_DETAILS}</td>
-                `;
-                                    tableBody.appendChild(row);
+                            // Clear existing table rows
+                            tableBody.empty();
+
+                            if (data.length === 0) {
+                                tableBody.append('<tr><td colspan="5">No test details found</td></tr>');
+                            } else {
+                                // Populate table rows with appointments data
+                                data.forEach(function (test) {
+                                    var row = '<tr>' +
+                                            '<td>' + test.tid + '</td>' +
+                                            '<td>' + test.patient_name + '</td>' +
+                                            '<td>' + test.test_type + '</td>' +
+                                            '<td>' + test.test_date + '</td>' +
+                                            '<td>' + test.test_time + '</td>' +
+                                            '<td>' + test.technician_name + '</td>' +
+                                            '<td>' + test.referring_doctor + '</td>' +
+                                            '<td>' + test.result_DETAILS + '</td>' +
+                                            '</tr>';
+                                    tableBody.append(row);
                                 });
-                            })
-                            .catch(error => {
-                                console.error('Error fetching test details:', error);
-                            });
-                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching or parsing data:', error);
+                            // Handle error, e.g., display a message to the user
+                        });
+            });
 
-                //Appointment
-                document.addEventListener("DOMContentLoaded", function () {
-                    // Fetch appointment data from the server (simulated data)
-                    fetchAppointments();
-                });
 
-                function fetchAppointments() {
-                    // Simulated data (replace with actual API or server-side code)
-                    const appointmentsData = [
-                        //{id: 1, name: "John Doe", date: "2024-03-15", time: "10:00:00", testType: "Blood Test"},
-                        // Add more data as needed
-                    ];
 
-                    // Populate the appointment table
-                    const appointmentTable = document.getElementById("appointmentTable");
+//***************************************Appointment*************************************************************
+            $(document).ready(function () {
+                // Fetch data from API
+                fetch('http://localhost:8080/LAB-ABC-rest-service/resources/appointment')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            var tableBody = $('#appointmentsTableBody');
 
-                    appointmentsData.forEach(appointment => {
-                        const row = appointmentTable.insertRow();
-                        row.insertCell(0).textContent = appointment.id;
-                        row.insertCell(1).textContent = appointment.name;
-                        row.insertCell(2).textContent = appointment.date;
-                        row.insertCell(3).textContent = appointment.time;
-                        row.insertCell(4).textContent = appointment.testType;
-                    });
-                }
+                            // Clear existing table rows
+                            tableBody.empty();
 
-                //Patient
-
-                function showPatientsContent() {
-                    fetchPatients();
-                }
-
-                function fetchPatients() {
-                    const patientsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/patient/";
-
-                    fetch(patientsUrl)
-                            .then(response => response.json())
-                            .then(data => {
-                                const patientsList = document.getElementById("patientsList");
-                                patientsList.innerHTML = "";
-
-                                data.forEach(patient => {
-                                    const row = document.createElement("tr");
-                                    row.innerHTML = `
-                    <td>${patient.id}</td>
-                    <td>${patient.p_name}</td>
-                    <td>${patient.dob}</td>
-                    <td>${patient.gender}</td>
-                    <td>${patient.email}</td>
-                    <td>${patient.password}</td>
-                    <td>${patient.contact}</td>
-                `;
-                                    patientsList.appendChild(row);
+                            if (data.length === 0) {
+                                tableBody.append('<tr><td colspan="5">No appointments found</td></tr>');
+                            } else {
+                                // Populate table rows with appointments data
+                                data.forEach(function (appointment) {
+                                    var row = '<tr>' +
+                                            '<td>' + appointment.apid + '</td>' +
+                                            '<td>' + appointment.patient_name + '</td>' +
+                                            '<td>' + appointment.date + '</td>' +
+                                            '<td>' + appointment.time + '</td>' +
+                                            '<td>' + appointment.test + '</td>' +
+                                            '</tr>';
+                                    tableBody.append(row);
                                 });
-                            })
-                            .catch(error => {
-                                console.error("Error fetching patient data:", error);
-                            });
-                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching or parsing data:', error);
+                            // Handle error, e.g., display a message to the user
+                        });
+            });
 
 
-                function logout() {
-                    window.location.href = "http://localhost:8080/LAB-ABC-client/";
-                    alert("Logging out...");
-                }
+//************************************Patient*********************************************************************            
+            $(document).ready(function () {
+                // Fetch data from API
+                fetch('http://localhost:8080/LAB-ABC-rest-service/resources/patient')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            var tableBody = $('#patientsList');
+
+                            tableBody.empty();
+
+                            if (data.length === 0) {
+                                tableBody.append('<tr><td colspan="5">No patient found</td></tr>');
+                            } else {
+                                data.forEach(function (patient) {
+                                    var row = '<tr>' +
+                                            '<td>' + patient.id + '</td>' +
+                                            '<td>' + patient.p_name + '</td>' +
+                                            '<td>' + patient.dob + '</td>' +
+                                            '<td>' + patient.gender + '</td>' +
+                                            '<td>' + patient.email + '</td>' +
+                                            '<td>' + patient.contact + '</td>' +
+                                            '</tr>';
+                                    tableBody.append(row);
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching or parsing data:', error);
+                            // Handle error, e.g., display a message to the user
+                        });
+            });
+
+//***************************************************************************************************************
+
+            function logout() {
+                window.location.href = "http://localhost:8080/LAB-ABC-client/";
+                alert("Logging out...");
+            }
 
 
-            </script>
+        </script>
 
     </body>
 </html>
