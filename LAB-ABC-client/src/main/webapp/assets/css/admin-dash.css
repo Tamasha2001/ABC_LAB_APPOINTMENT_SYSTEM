@@ -64,14 +64,15 @@ body {
 
 .admin-content{
     margin-top: 30px;
-    margin-left: 200px;
+    margin-left: 250px;
     padding: 20px;
+    width: 1100px;
 }
 
 
 .container {
-    width: 70%;
-    max-width: 700px;
+    width: 80%;
+    max-width: 900px;
     margin-bottom: 200px;
     margin: 50px auto;
     background-color: #fff;

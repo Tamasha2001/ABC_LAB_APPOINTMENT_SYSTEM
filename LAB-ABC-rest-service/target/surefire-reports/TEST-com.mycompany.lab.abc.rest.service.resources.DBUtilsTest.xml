@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="24" failures="24" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" time="1.286" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_202\jre\bin"/>
+    <property name="java.vm.version" value="25.202-b08"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\User\OneDrive\Documents\ABC_LAB_APPOINTMENT_SYSTEM\LAB-ABC-rest-service"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\User\OneDrive\Documents\ABC_LAB_APPOINTMENT_SYSTEM\LAB-ABC-rest-service"/>
+    <property name="java.runtime.version" value="1.8.0_202-b08"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_202\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\User\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-13\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="classworlds.conf" value="C:\Program Files\NetBeans-13\netbeans\java\maven\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_202\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Azure Data Studio\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Java\jdk-21\bin;C:\Program Files\Azure Data Studio\bin;C:\Users\User\.dotnet\tools;C:\Users\User\AppData\Local\GitHubDesktop\bin;."/>
+    <property name="maven.conf" value="C:\Program Files\NetBeans-13\netbeans\java\maven/conf"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="library.jansi.path" value="C:\Program Files\NetBeans-13\netbeans\java\maven\lib\jansi-native"/>
+    <property name="user.home" value="C:\Users\User"/>
+    <property name="user.timezone" value="Asia/Colombo"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="User"/>
+    <property name="java.class.path" value="C:\Program Files\NetBeans-13\netbeans\java\maven\boot\plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_202\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans-13\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_202"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_202\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_202\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_202\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_202\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files\NetBeans-13\netbeans\java\maven"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddReport" time="0.67">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddReport(DBUtilsTest.java:378)
+</failure>
+    <system-out>addReport
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPayment" time="0">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPayment(DBUtilsTest.java:393)
+</failure>
+    <system-out>addPayment
+</system-out>
+    <system-err>java.lang.NullPointerException
+	at com.mycompany.lab.abc.rest.service.resources.DBUtils.addPayment(DBUtils.java:682)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPayment(DBUtilsTest.java:390)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethod(PojoTestSet.java:151)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethods(PojoTestSet.java:102)
+	at org.apache.maven.surefire.junit.PojoTestSet.execute(PojoTestSet.java:83)
+	at org.apache.maven.surefire.junit.JUnit3Provider.executeTestSet(JUnit3Provider.java:121)
+	at org.apache.maven.surefire.junit.JUnit3Provider.invoke(JUnit3Provider.java:98)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</system-err>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatient" time="0.04">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatient(DBUtilsTest.java:52)
+</failure>
+    <system-out>getPatient
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPatient" time="0.015">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPatient(DBUtilsTest.java:81)
+</failure>
+    <system-out>addPatient
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testViewPatient" time="0.015">
+    <failure message="expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Patient@1b68ddbd, com.mycompany.lab.abc.rest.service.resources.Patient@646d64ab, com.mycompany.lab.abc.rest.service.resources.Patient@59e5ddf, com.mycompany.lab.abc.rest.service.resources.Patient@536aaa8d, com.mycompany.lab.abc.rest.service.resources.Patient@e320068, com.mycompany.lab.abc.rest.service.resources.Patient@1f57539, com.mycompany.lab.abc.rest.service.resources.Patient@76f2b07d, com.mycompany.lab.abc.rest.service.resources.Patient@704a52ec, com.mycompany.lab.abc.rest.service.resources.Patient@6ee52dcd, com.mycompany.lab.abc.rest.service.resources.Patient@4493d195]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Patient@1b68ddbd, com.mycompany.lab.abc.rest.service.resources.Patient@646d64ab, com.mycompany.lab.abc.rest.service.resources.Patient@59e5ddf, com.mycompany.lab.abc.rest.service.resources.Patient@536aaa8d, com.mycompany.lab.abc.rest.service.resources.Patient@e320068, com.mycompany.lab.abc.rest.service.resources.Patient@1f57539, com.mycompany.lab.abc.rest.service.resources.Patient@76f2b07d, com.mycompany.lab.abc.rest.service.resources.Patient@704a52ec, com.mycompany.lab.abc.rest.service.resources.Patient@6ee52dcd, com.mycompany.lab.abc.rest.service.resources.Patient@4493d195]&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testViewPatient(DBUtilsTest.java:123)
+</failure>
+    <system-out>viewPatient
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testVerifyLogin" time="0.03">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testVerifyLogin(DBUtilsTest.java:141)
+</failure>
+    <system-out>verifyLogin
+</system-out>
+    <system-err>Loading class `com.mysql.jdbc.Driver&apos;. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver&apos;. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+</system-err>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatients" time="0">
+    <failure message="expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Patient@7d70d1b1, com.mycompany.lab.abc.rest.service.resources.Patient@2a742aa2, com.mycompany.lab.abc.rest.service.resources.Patient@3cb1ffe6, com.mycompany.lab.abc.rest.service.resources.Patient@3dfc5fb8, com.mycompany.lab.abc.rest.service.resources.Patient@467aecef, com.mycompany.lab.abc.rest.service.resources.Patient@4d50efb8, com.mycompany.lab.abc.rest.service.resources.Patient@7e2d773b, com.mycompany.lab.abc.rest.service.resources.Patient@2173f6d9, com.mycompany.lab.abc.rest.service.resources.Patient@307f6b8c, com.mycompany.lab.abc.rest.service.resources.Patient@7a187f14]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Patient@7d70d1b1, com.mycompany.lab.abc.rest.service.resources.Patient@2a742aa2, com.mycompany.lab.abc.rest.service.resources.Patient@3cb1ffe6, com.mycompany.lab.abc.rest.service.resources.Patient@3dfc5fb8, com.mycompany.lab.abc.rest.service.resources.Patient@467aecef, com.mycompany.lab.abc.rest.service.resources.Patient@4d50efb8, com.mycompany.lab.abc.rest.service.resources.Patient@7e2d773b, com.mycompany.lab.abc.rest.service.resources.Patient@2173f6d9, com.mycompany.lab.abc.rest.service.resources.Patient@307f6b8c, com.mycompany.lab.abc.rest.service.resources.Patient@7a187f14]&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatients(DBUtilsTest.java:64)
+</failure>
+    <system-out>getPatients
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTest" time="0.015">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTest(DBUtilsTest.java:333)
+</failure>
+    <system-out>addTest
+</system-out>
+    <system-err>java.lang.NullPointerException
+	at com.mycompany.lab.abc.rest.service.resources.DBUtils.addTest(DBUtils.java:470)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTest(DBUtilsTest.java:330)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethod(PojoTestSet.java:151)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethods(PojoTestSet.java:102)
+	at org.apache.maven.surefire.junit.PojoTestSet.execute(PojoTestSet.java:83)
+	at org.apache.maven.surefire.junit.JUnit3Provider.executeTestSet(JUnit3Provider.java:121)
+	at org.apache.maven.surefire.junit.JUnit3Provider.invoke(JUnit3Provider.java:98)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</system-err>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTest" time="0.015">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTest(DBUtilsTest.java:361)
+</failure>
+    <system-out>deleteTest
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTest" time="0.01">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTest(DBUtilsTest.java:304)
+</failure>
+    <system-out>getTest
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTests" time="0">
+    <failure message="expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Test@3e57cd70, com.mycompany.lab.abc.rest.service.resources.Test@9a7504c, com.mycompany.lab.abc.rest.service.resources.Test@2c039ac6, com.mycompany.lab.abc.rest.service.resources.Test@587d1d39, com.mycompany.lab.abc.rest.service.resources.Test@58c1670b, com.mycompany.lab.abc.rest.service.resources.Test@6b57696f, com.mycompany.lab.abc.rest.service.resources.Test@5bb21b69, com.mycompany.lab.abc.rest.service.resources.Test@6b9651f3, com.mycompany.lab.abc.rest.service.resources.Test@38bc8ab5]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Test@3e57cd70, com.mycompany.lab.abc.rest.service.resources.Test@9a7504c, com.mycompany.lab.abc.rest.service.resources.Test@2c039ac6, com.mycompany.lab.abc.rest.service.resources.Test@587d1d39, com.mycompany.lab.abc.rest.service.resources.Test@58c1670b, com.mycompany.lab.abc.rest.service.resources.Test@6b57696f, com.mycompany.lab.abc.rest.service.resources.Test@5bb21b69, com.mycompany.lab.abc.rest.service.resources.Test@6b9651f3, com.mycompany.lab.abc.rest.service.resources.Test@38bc8ab5]&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTests(DBUtilsTest.java:316)
+</failure>
+    <system-out>getTests
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTest" time="0.015">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTest(DBUtilsTest.java:348)
+</failure>
+    <system-out>updateTest
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdatePatient" time="0">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdatePatient(DBUtilsTest.java:96)
+</failure>
+    <system-out>updatePatient
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeletePatient" time="0.015">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeletePatient(DBUtilsTest.java:109)
+</failure>
+    <system-out>deletePatient
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointments" time="0">
+    <failure message="expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Appointment@45820e51, com.mycompany.lab.abc.rest.service.resources.Appointment@42d8062c, com.mycompany.lab.abc.rest.service.resources.Appointment@6043cd28, com.mycompany.lab.abc.rest.service.resources.Appointment@cb51256, com.mycompany.lab.abc.rest.service.resources.Appointment@59906517, com.mycompany.lab.abc.rest.service.resources.Appointment@5bfbf16f, com.mycompany.lab.abc.rest.service.resources.Appointment@25af5db5, com.mycompany.lab.abc.rest.service.resources.Appointment@12cdcf4, com.mycompany.lab.abc.rest.service.resources.Appointment@5bcea91b, com.mycompany.lab.abc.rest.service.resources.Appointment@5f3a4b84]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Appointment@45820e51, com.mycompany.lab.abc.rest.service.resources.Appointment@42d8062c, com.mycompany.lab.abc.rest.service.resources.Appointment@6043cd28, com.mycompany.lab.abc.rest.service.resources.Appointment@cb51256, com.mycompany.lab.abc.rest.service.resources.Appointment@59906517, com.mycompany.lab.abc.rest.service.resources.Appointment@5bfbf16f, com.mycompany.lab.abc.rest.service.resources.Appointment@25af5db5, com.mycompany.lab.abc.rest.service.resources.Appointment@12cdcf4, com.mycompany.lab.abc.rest.service.resources.Appointment@5bcea91b, com.mycompany.lab.abc.rest.service.resources.Appointment@5f3a4b84]&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointments(DBUtilsTest.java:168)
+</failure>
+    <system-out>getAppointments
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testMakeAppointment" time="0.015">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testMakeAppointment(DBUtilsTest.java:185)
+</failure>
+    <system-out>makeAppointment
+</system-out>
+    <system-err>java.lang.NullPointerException
+	at com.mycompany.lab.abc.rest.service.resources.DBUtils.makeAppointment(DBUtils.java:245)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testMakeAppointment(DBUtilsTest.java:182)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethod(PojoTestSet.java:151)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethods(PojoTestSet.java:102)
+	at org.apache.maven.surefire.junit.PojoTestSet.execute(PojoTestSet.java:83)
+	at org.apache.maven.surefire.junit.JUnit3Provider.executeTestSet(JUnit3Provider.java:121)
+	at org.apache.maven.surefire.junit.JUnit3Provider.invoke(JUnit3Provider.java:98)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</system-err>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointment" time="0">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointment(DBUtilsTest.java:156)
+</failure>
+    <system-out>getAppointment
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateAppointment" time="0">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateAppointment(DBUtilsTest.java:200)
+</failure>
+    <system-out>updateAppointment
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteAppointment" time="0.015">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteAppointment(DBUtilsTest.java:213)
+</failure>
+    <system-out>deleteAppointment
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnician" time="0">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnician(DBUtilsTest.java:230)
+</failure>
+    <system-out>getTechnician
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnicians" time="0">
+    <failure message="expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Technician@3aeaafa6]&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;null&gt; but was: &lt;[com.mycompany.lab.abc.rest.service.resources.Technician@3aeaafa6]&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnicians(DBUtilsTest.java:242)
+</failure>
+    <system-out>getTechnicians
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTechnician" time="0.416">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTechnician(DBUtilsTest.java:259)
+</failure>
+    <system-out>addTechnician
+</system-out>
+    <system-err>java.lang.NullPointerException
+	at com.mycompany.lab.abc.rest.service.resources.DBUtils.addTechnician(DBUtils.java:357)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTechnician(DBUtilsTest.java:256)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethod(PojoTestSet.java:151)
+	at org.apache.maven.surefire.junit.PojoTestSet.executeTestMethods(PojoTestSet.java:102)
+	at org.apache.maven.surefire.junit.PojoTestSet.execute(PojoTestSet.java:83)
+	at org.apache.maven.surefire.junit.JUnit3Provider.executeTestSet(JUnit3Provider.java:121)
+	at org.apache.maven.surefire.junit.JUnit3Provider.invoke(JUnit3Provider.java:98)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</system-err>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTechnician" time="0">
+    <failure message="The test case is a prototype." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTechnician(DBUtilsTest.java:274)
+</failure>
+    <system-out>updateTechnician
+</system-out>
+  </testcase>
+  <testcase classname="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest" name="com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTechnician" time="0">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTechnician(DBUtilsTest.java:287)
+</failure>
+    <system-out>deleteTechnician
+</system-out>
+  </testcase>
+</testsuite>

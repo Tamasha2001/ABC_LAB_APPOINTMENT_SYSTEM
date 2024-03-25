@@ -27,7 +27,7 @@
                 <a onclick="showContent('manageTestContent')" href="#manageTestDetails">Manage Test Details</a>
                 <a onclick="showContent('appointmentsContent')" href="#appointments">View Appointments</a>
                 <a onclick="showContent('viewPatientsContent')" href="#viewPatients">View Patients</a>
-                <a onclick="showContent('uploadReportContent')" href="#uploadReport">View Payments</a>
+                <a onclick="showContent('paymentContent')" href="#payment">View Payments</a>
 
                 <button onclick="logout()" style="margin-top:190px; margin-left:150px; background-color: red">Logout</button>
 
@@ -37,18 +37,19 @@
             <div class="technician-content" id="uploadReportContent">
                 <section id="uploadReport" class="container">
                     <h1>Upload Report</h1>
-                    <form id="uploadReportForm" onsubmit="submitReport()">
-                        <label for="appointmentId">Patient ID:</label>
-                        <input type="text" id="appointmentId" name="appointmentId" required>
+                    <form id="uploadReportForm">
 
-                        <label for="reportFile">Upload PDF Report:</label>
+                        <label for="reportId">Report ID:</label>
+                        <input type="text" id="reportId" name="reportId" required>
+
+                        <label for="patientName">Patient Name:</label>
+                        <input type="text" id="patientName" name="patientName" required>
+
+                        <label for="uploadReportFile">Upload PDF Report:</label>
                         <input type="file" id="uploadReportFile" accept=".pdf" required />
 
-                        <button id="btnsubmitReport" onclick="submitReport() style ="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Upload Report</button>
-
+                        <button id="btnUploadReport" onclick="addReport(event)" style="font-weight: bold; font-size: 15px; background-color: #2c3e50;">Upload Report</button>
                     </form>
-
-                    <div id="reportUploadResult"></div>
                 </section>
             </div>
 
@@ -112,31 +113,31 @@
 
                         </div>
                     </form>
-                     </section>
+                </section>
 
-                    <div class="button-container" id="manageTestContent">
-                        <section id="testdetails" class="containers">
-                            <h2 class="dashboard-heading">View Test Details</h2>
-                            <br>
-                            <table id="testDetailsTable" class="test-details-table">
-                                <thead>
-                                    <tr>
-                                        <th>Test ID</th>
-                                        <th>Patient Name</th>
-                                        <th>Test Type</th>
-                                        <th>Test Date</th>
-                                        <th>Test Time</th>
-                                        <th>Technician Name</th>
-                                        <th>Referring Doctor</th>
-                                        <th>Result Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="testTableBody">
-                                </tbody>
-                            </table>
-                        </section>
-                  </div>
-     
+                <div class="button-container" id="manageTestContent">
+                    <section id="testdetails" class="containers">
+                        <h2 class="dashboard-heading">View Test Details</h2>
+                        <br>
+                        <table id="testDetailsTable" class="test-details-table">
+                            <thead>
+                                <tr>
+                                    <th>Test ID</th>
+                                    <th>Patient Name</th>
+                                    <th>Test Type</th>
+                                    <th>Test Date</th>
+                                    <th>Test Time</th>
+                                    <th>Technician Name</th>
+                                    <th>Referring Doctor</th>
+                                    <th>Result Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="testTableBody">
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
             </div>
 
             <div class="technician-content" id="appointmentsContent">
@@ -160,7 +161,7 @@
             </div>
 
             <div class="technician-content" id="viewPatientsContent">
-                <section id="viewPatients" class="container">
+                <section id="viewPatients" class="containerpt">
                     <h2 class="dashboard-heading">View Patients</h2>
                     <br>
                     <table id="patientTable" class="patient-table">
@@ -176,6 +177,27 @@
                             </tr>
                         </thead>
                         <tbody id="patientsList">
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <div class="technician-content" id="paymentContent">
+                <section id="payment" class="containerp">
+                    <h2 class="dashboard-heading">View Payments</h2>
+                    <br>
+                    <table id="paymentTable" class="payment-table">
+                        <thead>
+                            <tr>
+                                <th>Payer ID</th>
+                                <th>Patient Name</th>
+                                <th>Amount</th>
+                                <th>Card no</th>
+                                <th>Expire Date</th>
+                                <th>CVV</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentTableBody">
                         </tbody>
                     </table>
                 </section>
@@ -214,60 +236,124 @@
                     fetchAppointmentDetails();
                 }
             }
-//**************************************************************************************************************
 
-            //Upload report
-            function submitReport() {
-                var appointmentId = document.getElementById('appointmentId').value;
-                var reportFileInput = document.getElementById('uploadReportFile');
-                var reportFile = reportFileInput.files[0];
-                if (!appointmentId) {
-                    alert('Please enter the Appointment ID.');
-                    return;
-                }
 
-                if (!reportFile) {
-                    alert('Please select a PDF report file.');
-                    return;
-                }
+//***************************************************************************************************************
 
-                // You can handle the file (e.g., upload to the server) here
-                handleReportUpload(appointmentId, reportFile);
-            }
+//            const reportDetailsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/report/";
+//
+//            function addReport(event) {
+//                event.preventDefault(); // Prevent the form from submitting normally
+//
+//                // Get the patient ID and PDF file data
+//                const patientId = document.getElementById("patientId").value;
+//                const uploadReportFile = document.getElementById("uploadReportFile");
+//                const file = uploadReportFile.files[0];
+//
+//                // Check if a file is selected
+//                if (!file) {
+//                    alert("Please select a file.");
+//                    return false;
+//                }
+//
+//                // Check if the selected file is a PDF
+//                if (file.type !== 'application/pdf') {
+//                    alert('Please select a valid PDF file.');
+//                    return false;
+//                }
+//
+//                // Read the PDF file as data URL
+//                var reader = new FileReader();
+//                reader.onload = function (e) {
+//                    var pdfContent = e.target.result;
+//
+//                    // Prepare the report object
+//                    const report = {
+//                        "id": patientId,
+//                        "pdf_file": pdfContent
+//                    };
+//
+//                    // Send the report data to the server
+//                    fetch(reportDetailsUrl, {
+//                        method: "POST",
+//                        headers: {
+//                            "Content-Type": "application/json"
+//                        },
+//                        body: JSON.stringify(report)
+//                    })
+//                            .then(response => {
+//                                if (response.ok) {
+//                                    displayMessage("Report upload successful!", "success");
+//                                    document.getElementById("uploadReportForm").reset(); // Reset the form after successful upload
+//                                } else {
+//                                    response.json().then(data => {
+//                                        const errorMessage = data.message || "Upload failed. Please try again.";
+//                                        displayMessage(errorMessage, "error");
+//                                    });
+//                                }
+//                            })
+//                            .catch(error => {
+//                                console.error('Error:', error);
+//                                displayMessage("Upload failed. Please try again later.", "error");
+//                            });
+//                };
+//                reader.readAsDataURL(file);
+//
+//                return false;
+//            }
+//
+//// Function to display a message
+//            function displayMessage(message, type) {
+//                // Implement your message display logic here
+//                console.log(message);
+//            }
+//**************************************************************************************************
 
-            function handleReportUpload(appointmentId, reportFile) {
-                // Perform any necessary actions here
-                // For demonstration purposes, display a success message
-                var reportUploadResult = document.getElementById('reportUploadResult');
-                reportUploadResult.innerHTML = 'Report uploaded successfully for Appointment ID: ' + appointmentId;
-            }
+            const reportDetailsUrl = "http://localhost:8080/LAB-ABC-rest-service/resources/report/";
 
-            function handleFileSelect(event) {
-                var fileInput = event.target;
-                var files = fileInput.files;
-                if (files.length > 0) {
-                    var file = files[0];
-                    if (file.type === 'application/pdf') {
-                        readPDFFile(file);
-                    } else {
-                        alert('Please select a valid PDF file.');
-                    }
-                }
-            }
+            function addReport() {
+                event.preventDefault();
+                let rid = document.getElementById("reportId").value;
 
-            function readPDFFile(file) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var pdfContent = e.target.result;
-                    // Handle the PDF content, e.g., upload to the server or display it
-                    displayPDFContent(pdfContent);
-                };
-                reader.readAsDataURL(file);
-            }
+                // Check if the test ID already exists
+                fetch(reportDetailsUrl + rid)
+                        .then(response => {
+                            if (response.ok) {
+                                alert("Report ID is already in use. Please choose a different ID.");
+                            } else {
+                                const person = {
+                                    "rid": rid,
+                                    "patient_name": document.getElementById("patientName").value,
+                                    "pdf_file": document.getElementById("uploadReportFile").value
+                                };
 
-            function displayPDFContent(pdfContent) {
-                var reportContainer = document.getElementById('report');
-                reportContainer.innerHTML = '<embed src="' + pdfContent + '" type="application/pdf" width="100%" height="600px" />';
+                                const options = {
+                                    method: "POST",
+                                    headers: {
+                                        "content-type": "application/json"
+                                    },
+                                    body: JSON.stringify(person)
+                                };
+
+                                fetch(reportDetailsUrl, options)
+                                        .then(response => {
+                                            if (response.ok) {
+                                                alert("Uploading the report is successful!");
+                                                document.getElementById("uploadReportForm").reset(); 
+                                            } else {
+                                                throw new Error("Failed to add report.");
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert("An error occurred. Please try again later.");
+                                        });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("An error occurred. Please try again later.");
+                        });
             }
 
 //*****************************Manage test details***************************************************************
@@ -458,7 +544,7 @@
                                 // Populate table rows with appointments data
                                 data.forEach(function (test) {
                                     var row = '<tr>' +
-                                            '<td>' + test.tid + '</td>' +
+                                            '<td>' + test.test_id + '</td>' +
                                             '<td>' + test.patient_name + '</td>' +
                                             '<td>' + test.test_type + '</td>' +
                                             '<td>' + test.test_date + '</td>' +
@@ -557,12 +643,56 @@
 
 //***************************************************************************************************************
 
+            $(document).ready(function () {
+                fetch('http://localhost:8080/LAB-ABC-rest-service/resources/payment')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            var tableBody = $('#paymentTableBody');
+
+                            tableBody.empty();
+
+                            if (data.length === 0) {
+                                tableBody.append('<tr><td colspan="5">No payment details found</td></tr>');
+                            } else {
+                                data.forEach(function (payment) {
+                                    var row = '<tr>' +
+                                            '<td>' + payment.payid + '</td>' +
+                                            '<td>' + payment.patient_name + '</td>' +
+                                            '<td>' + payment.amount + '</td>' +
+                                            '<td>' + payment.cardno + '</td>' +
+                                            '<td>' + payment.exdate + '</td>' +
+                                            '<td>' + payment.cvv + '</td>' +
+                                            '</tr>';
+                                    tableBody.append(row);
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching or parsing data:', error);
+                            // Handle error, e.g., display a message to the user
+                        });
+            });
+
+
             function logout() {
                 window.location.href = "http://localhost:8080/LAB-ABC-client/";
                 alert("Logging out...");
             }
 
-
+//$('.payment-button').click(function () {
+//                // Redirect to the payment dashboard URL
+//                window.location.href = "payment.jsp"; // Replace "payment.jsp" with the actual URL
+//                 Clear payment form
+//                document.getElementById("paymentForm").reset();
+//                // Navigate back to the previous page
+//                                    window.history.back();
+//                window.location.href = "http://localhost:8080/LAB-ABC-client/patient-dash.jsp#downloadReport";
+//            });
         </script>
 
     </body>

@@ -26,7 +26,6 @@
                 <a onclick="showContent('appointmentContent')" href="#appointment">Make an Appointment</a>
                 <a onclick="showContent('viewAppointmentContent')" href="#viewAppointment">View Appointments</a>
                 <a onclick="showContent('downloadReportContent')" href="#downloadReport">Download Your Report</a>
-                <a onclick="showContent('payment-content')" href="#paymentSection">Patient Payments</a>
                 <div>
                     <button onclick="logout()" style="margin-top:250px; margin-left:150px; background-color: red">Logout</button>
                 </div>
@@ -35,10 +34,9 @@
             <!--**************************** Make an appointment ***************************************-->
 
             <div class="appointment-content" id="appointmentContent">
-                <section id="appointment" class="container">
-                    <h1>ABC Lab Appointment</h1>
+<!--                <section id="appointment" class="container">-->
                     <div class="container">
-                        <h1>Lab Appointment Form</h1>
+                        <h2 style="text-align: center">Lab Appointment Form</h2>
                         <form id="appointmentForm">
                             <label for="patientName">Patient Name:</label>
                             <input type="text" id="patientName" name="patientName" required>
@@ -59,11 +57,11 @@
                                 <option value="geneticTests">Genetic Tests</option>
                             </select>
 
-                            <button id="btnmakeAppointment" onclick="makeAppointment()">Submit Appointment</button>
+                            <button style="font-weight: bold; font-size: 15px; background-color: #2c3e50;" id="btnmakeAppointment" onclick="makeAppointment()">Submit Appointment</button>
 
                         </form>
                     </div>
-                </section>
+<!--                </section>-->
             </div>
 
             <!--**************************** View an appointment ***************************************-->
@@ -81,36 +79,32 @@
 
             <div class="appointment-content" id="downloadReportContent">
                 <section id="downloadReport" class="container">
-                    <h1>Download Your Report</h1>
-                    <button onclick="downloadReport()">Download Report</button>
-                </section>
-            </div>
+                    <div class="containerd">
+                        <h2>Medical Report</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Report ID</th>
+                                    <th>Patient Name</th>
+                                    <th>PDF Report</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportTableBody">
+                                <tr>
+                                    <td>12345</td>
+                                    <td>John Doe</td>
+                                    <td><a href="Medical/Medical Report.pdf" target="_blank">View Report</a></td>
+                                    <td>
+                                        <button class="button download-button" disabled>Download</button>
+                                        <button  id="submit"  class="button payment-button"><a href="payment.jsp">Pay</a></button>
 
-            <!--**************************** Patient Payments ***************************************-->
-
-            <div class="appointment-content" id="payment-content">
-                <section id="paymentSection" class="container">
-                    <h1>Patient Payments</h1>
-                    <form id="paymentForm" onsubmit="submitPayment(event)">
-                        <label for="patientName">Patient Name:</label>
-                        <input type="text" id="patientName" name="patientName" required>
-
-                        <label for="amount">Amount:</label>
-                        <input type="number" id="amount" name="amount" min="0" step="0.01" required>
-
-                        <label for="cardNumber">Card Number:</label>
-                        <input type="text" id="cardNumber" name="cardNumber" placeholder="**** **** **** ****" pattern="\d{4} \d{4} \d{4} \d{4}" required>
-
-                        <label for="expiryDate">Expiry Date:</label>
-                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" pattern="\d{2}/\d{2}" required>
-
-                        <label for="cvv">CVV:</label>
-                        <input type="text" id="cvv" name="cvv" maxlength="3" required>
-
-                        <button type="submit">Make Payment</button>
-                    </form>
-                    <div id="paymentResult"></div>
-                </section>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>                            
             </div>
         </div>
 
@@ -166,7 +160,6 @@
                     body: JSON.stringify(person)
                 };
 
-                // Check for conflicts on the client-side before sending the request
                 if (checkForConflicts(person.date, person.time)) {
                     showNotification("Another patient has already booked the same date and time. Please choose another slot.");
                     return;
@@ -175,10 +168,8 @@
                 fetch(url, options)
                         .then(response => {
                             if (response.ok) {
-                                // Appointment successful
                                 showNotification("Appointment booked successfully!");
                             } else {
-                                // Handle server errors
                                 showNotification("Failed to make appointment. Please try again later.");
                             }
                         })
@@ -189,26 +180,123 @@
             }
 
             function checkForConflicts(date, time) {
-                // This function should make a request to the server to check for conflicts
-                // Replace this with your actual logic
-                // For now, assume no conflicts on the client-side
+
                 return false;
             }
 
             function showNotification(message) {
-                // Display notification to the user
                 alert(message);
             }
+//**************************************************************************************************************
+            $(document).ready(function () {
+                // Event listener for the "View Report" link
+                $('#reportTableBody').on('click', 'a', function (event) {
+                    // Prevent the default action (i.e., following the link)
+                    event.preventDefault();
 
-           
+                    window.location.href = "Medical/Medical Report.pdf";
+                    var pdfFileUrl = $(this).attr('href');
 
+                    // Open the PDF file in a new tab
+                    window.open(pdfFileUrl, '_blank');
+                });
 
+                // Event listener for the "Download" button
+                $('#reportTableBody').on('click', '.download-button', function () {
+                    // Get the URL of the report file
+                    var reportUrl = $(this).closest('tr').find('a').attr('href');
 
+                    // Trigger the download
+                    downloadReport(reportUrl);
+                });
+
+                // Fetch report data from the server
+                fetch('http://localhost:8080/LAB-ABC-rest-service/resources/report')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            var tableBody = $('#reportTableBody');
+                            tableBody.empty();
+
+                            if (data.length === 0) {
+                                tableBody.append('<tr><td colspan="4">No report details found</td></tr>');
+                            } else {
+                                data.forEach(function (report) {
+                                    var paidButton = report.paid ? "Paid" : '<button class="button payment-button" data-report-id="' + report.rid + '">Pay</button>';
+                                    var row = '<tr>' +
+                                            '<td>' + report.rid + '</td>' +
+                                            '<td>' + report.patient_name + '</td>' +
+                                            '<td><a href="' + report.pdf_file + '" target="_blank">View Report</a></td>' +
+                                            '<td>' +
+                                            paidButton +
+                                            ' | ' +
+                                            '<button class="button download-button" data-report-id="' + report.rid + '">Download</button>' +
+                                            '</td>' +
+                                            '</tr>';
+                                    tableBody.append(row);
+                                });
+
+                                $('.payment-button').click(function () {
+                                    var reportId = $(this).data('report-id');
+                                    window.location.href = "payment.jsp"; // Replace "payment.jsp" with the actual URL
+                                    document.getElementById("paymentForm").reset();
+                                    window.history.back();
+                                    window.location.href = "http://localhost:8080/LAB-ABC-client/patient-dash.jsp#downloadReport";
+                                });
+
+                                $('.download-button').click(function () {
+                                    alert("Downloading report...");
+                                    // You can implement download functionality here
+                                });
+
+                                // Check if the URL contains a parameter indicating payment success
+                                var urlParams = new URLSearchParams(window.location.search);
+                                var successParam = urlParams.get('success');
+                                if (successParam === 'true') {
+                                    // Change the "Pay" button to "Paid"
+                                    $('.payment-button').text("Paid").removeClass("payment-button").addClass("paid-button");
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching or parsing data:', error);
+                        });
+            });
+
+            function downloadReport(reportUrl) {
+                // Create an invisible anchor element
+                var downloadLink = document.createElement('a');
+                downloadLink.style.display = 'none';
+                downloadLink.href = reportUrl;
+                downloadLink.download = reportUrl.split('/').pop(); // Extracts the filename for download
+                document.body.appendChild(downloadLink);
+
+                // Trigger the click event on the anchor element
+                downloadLink.click();
+
+                // Clean up
+                document.body.removeChild(downloadLink);
+            }
+
+//**************************************************************************************************************            
             function logout() {
                 window.location.href = "http://localhost:8080/LAB-ABC-client/";
                 alert("Logging out...");
             }
 
+//            $('.payment-button').click(function () {
+//                // Redirect to the payment dashboard URL
+//                window.location.href = "payment.jsp"; // Replace "payment.jsp" with the actual URL
+//                // Clear payment form
+//                document.getElementById("paymentForm").reset();
+//                // Navigate back to the previous page
+////                                    window.history.back();
+//                window.location.href = "http://localhost:8080/LAB-ABC-client/patient-dash.jsp#downloadReport";
+//            });
         </script>
     </body>
 </html>

@@ -18,9 +18,10 @@ body {
 }
 
 .container {
-    width: 70%;
+    width: 990px;
     max-width: 1000px;
     margin-bottom: 200px;
+    margin-right: 300px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -29,9 +30,34 @@ body {
 }
 
 .containers {
-    width: 70%;
+    width: 990px;
     max-width: 1000px;
     margin-bottom: 200px;
+    margin-right: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.containerp {
+    width: 700px;
+    max-width: 700px;
+    margin-bottom: 200px;
+    margin-right: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.containerpt {
+    /*width: 700px;*/
+    max-width: 700px;
+    margin-bottom: 200px;
+    margin-right: 300px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -102,7 +128,7 @@ body {
     margin-top: 80px;
     margin-left: 200px;
     padding: 20px;
-   
+
 }
 
 .technician-content{
@@ -112,7 +138,7 @@ body {
 }
 
 #report {
-    height: 100px; 
+    height: 100px;
 }
 
 .test-details-table table {
@@ -133,21 +159,26 @@ body {
     background-color: #f2f2f2;
 }
 
-.appointment-table {
+.appointment-table,
+.patient-table,
+.payment-table,
+.test-details-table{
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.appointment-table th, .appointment-table td
-.patient-table th , .patient-table td{
+.appointment-table th, .appointment-table td,
+.patient-table th , .patient-table td,
+.payment-table th, .payment-table td{
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
 .appointment-table th,
-.patient-table th{
+.patient-table th,
+.payment-table th{
     background-color: #f2f2f2;
 }
 
@@ -159,10 +190,18 @@ body {
     background-color: #f2f2f2;
 }
 
+.payment-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 .appointment-table tbody tr:hover {
     background-color: #ddd;
 }
 
 .patient-table tbody tr:hover {
+    background-color: #ddd;
+}
+
+.payment-table tbody tr:hover {
     background-color: #ddd;
 }

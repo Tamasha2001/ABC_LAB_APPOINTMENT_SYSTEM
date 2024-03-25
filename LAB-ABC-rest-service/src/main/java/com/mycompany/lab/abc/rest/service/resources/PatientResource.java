@@ -70,13 +70,6 @@ public class PatientResource {
                 .build();
     }
     
-
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response viewPatient() {
-//        List<Patient> patient = new DBUtils().viewPatient();
-//        return Response.ok(gson.toJson(patient)).build();
-//    }
     
      @PUT
     @Path("{id}")

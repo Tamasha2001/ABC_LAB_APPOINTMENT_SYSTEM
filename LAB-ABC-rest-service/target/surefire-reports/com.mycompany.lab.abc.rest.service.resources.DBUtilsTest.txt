@@ -1,0 +1,175 @@
+-------------------------------------------------------------------------------
+Test set: com.mycompany.lab.abc.rest.service.resources.DBUtilsTest
+-------------------------------------------------------------------------------
+Tests run: 24, Failures: 24, Errors: 0, Skipped: 0, Time elapsed: 1.286 sec <<< FAILURE!
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddReport()  Time elapsed: 0.67 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddReport(DBUtilsTest.java:378)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPayment()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPayment(DBUtilsTest.java:393)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatient()  Time elapsed: 0.04 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatient(DBUtilsTest.java:52)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPatient()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddPatient(DBUtilsTest.java:81)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testViewPatient()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <null> but was: <[com.mycompany.lab.abc.rest.service.resources.Patient@1b68ddbd, com.mycompany.lab.abc.rest.service.resources.Patient@646d64ab, com.mycompany.lab.abc.rest.service.resources.Patient@59e5ddf, com.mycompany.lab.abc.rest.service.resources.Patient@536aaa8d, com.mycompany.lab.abc.rest.service.resources.Patient@e320068, com.mycompany.lab.abc.rest.service.resources.Patient@1f57539, com.mycompany.lab.abc.rest.service.resources.Patient@76f2b07d, com.mycompany.lab.abc.rest.service.resources.Patient@704a52ec, com.mycompany.lab.abc.rest.service.resources.Patient@6ee52dcd, com.mycompany.lab.abc.rest.service.resources.Patient@4493d195]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testViewPatient(DBUtilsTest.java:123)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testVerifyLogin()  Time elapsed: 0.03 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testVerifyLogin(DBUtilsTest.java:141)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatients()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <null> but was: <[com.mycompany.lab.abc.rest.service.resources.Patient@7d70d1b1, com.mycompany.lab.abc.rest.service.resources.Patient@2a742aa2, com.mycompany.lab.abc.rest.service.resources.Patient@3cb1ffe6, com.mycompany.lab.abc.rest.service.resources.Patient@3dfc5fb8, com.mycompany.lab.abc.rest.service.resources.Patient@467aecef, com.mycompany.lab.abc.rest.service.resources.Patient@4d50efb8, com.mycompany.lab.abc.rest.service.resources.Patient@7e2d773b, com.mycompany.lab.abc.rest.service.resources.Patient@2173f6d9, com.mycompany.lab.abc.rest.service.resources.Patient@307f6b8c, com.mycompany.lab.abc.rest.service.resources.Patient@7a187f14]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetPatients(DBUtilsTest.java:64)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTest()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTest(DBUtilsTest.java:333)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTest()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTest(DBUtilsTest.java:361)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTest()  Time elapsed: 0.01 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTest(DBUtilsTest.java:304)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTests()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <null> but was: <[com.mycompany.lab.abc.rest.service.resources.Test@3e57cd70, com.mycompany.lab.abc.rest.service.resources.Test@9a7504c, com.mycompany.lab.abc.rest.service.resources.Test@2c039ac6, com.mycompany.lab.abc.rest.service.resources.Test@587d1d39, com.mycompany.lab.abc.rest.service.resources.Test@58c1670b, com.mycompany.lab.abc.rest.service.resources.Test@6b57696f, com.mycompany.lab.abc.rest.service.resources.Test@5bb21b69, com.mycompany.lab.abc.rest.service.resources.Test@6b9651f3, com.mycompany.lab.abc.rest.service.resources.Test@38bc8ab5]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTests(DBUtilsTest.java:316)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTest()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTest(DBUtilsTest.java:348)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdatePatient()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdatePatient(DBUtilsTest.java:96)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeletePatient()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeletePatient(DBUtilsTest.java:109)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointments()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <null> but was: <[com.mycompany.lab.abc.rest.service.resources.Appointment@45820e51, com.mycompany.lab.abc.rest.service.resources.Appointment@42d8062c, com.mycompany.lab.abc.rest.service.resources.Appointment@6043cd28, com.mycompany.lab.abc.rest.service.resources.Appointment@cb51256, com.mycompany.lab.abc.rest.service.resources.Appointment@59906517, com.mycompany.lab.abc.rest.service.resources.Appointment@5bfbf16f, com.mycompany.lab.abc.rest.service.resources.Appointment@25af5db5, com.mycompany.lab.abc.rest.service.resources.Appointment@12cdcf4, com.mycompany.lab.abc.rest.service.resources.Appointment@5bcea91b, com.mycompany.lab.abc.rest.service.resources.Appointment@5f3a4b84]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointments(DBUtilsTest.java:168)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testMakeAppointment()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testMakeAppointment(DBUtilsTest.java:185)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointment()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetAppointment(DBUtilsTest.java:156)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateAppointment()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateAppointment(DBUtilsTest.java:200)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteAppointment()  Time elapsed: 0.015 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteAppointment(DBUtilsTest.java:213)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnician()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnician(DBUtilsTest.java:230)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnicians()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <null> but was: <[com.mycompany.lab.abc.rest.service.resources.Technician@3aeaafa6]>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testGetTechnicians(DBUtilsTest.java:242)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTechnician()  Time elapsed: 0.416 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testAddTechnician(DBUtilsTest.java:259)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTechnician()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: The test case is a prototype.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testUpdateTechnician(DBUtilsTest.java:274)
+
+com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTechnician()  Time elapsed: 0 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
+	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
+	at com.mycompany.lab.abc.rest.service.resources.DBUtilsTest.testDeleteTechnician(DBUtilsTest.java:287)
+
